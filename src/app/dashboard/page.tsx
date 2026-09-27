@@ -61,7 +61,7 @@ const initialLeads: Lead[] = [
 export default function DashboardPage() {
   const [leads] = useState<Lead[]>(initialLeads);
   const [filter, setFilter] = useState('all');
-  const [activeTab, setActiveTab] = useState<'pipeline' | 'ceo-products'>('pipeline');
+  const [activeTab, setActiveTab] = useState<'pipeline' | 'ceo-products' | 'ceo-command'>('ceo-command');
 
   // CEO Product Management State
   const [productList, setProductList] = useState<ProductDef[]>(defaultProducts);
@@ -116,10 +116,16 @@ export default function DashboardPage() {
             ← NEXUS LIFT
           </Link>
           <span className="text-white/20">|</span>
-          <span className="text-xs font-bold text-gray-300">Executive CRM & Infrastructure Command Center</span>
+          <span className="text-xs font-bold text-gray-300">Executive CRM & Command Center</span>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex bg-white/10 p-1 rounded-xl text-xs">
+            <button
+              onClick={() => setActiveTab('ceo-command')}
+              className={`px-3 py-1.5 rounded-lg font-bold transition ${activeTab === 'ceo-command' ? 'bg-[#1971A5] text-white' : 'text-gray-300'}`}
+            >
+              📊 CEO Command
+            </button>
             <button
               onClick={() => setActiveTab('pipeline')}
               className={`px-3 py-1.5 rounded-lg font-bold transition ${activeTab === 'pipeline' ? 'bg-[#1971A5] text-white' : 'text-gray-300'}`}
@@ -130,11 +136,11 @@ export default function DashboardPage() {
               onClick={() => setActiveTab('ceo-products')}
               className={`px-3 py-1.5 rounded-lg font-bold transition ${activeTab === 'ceo-products' ? 'bg-[#1971A5] text-white' : 'text-gray-300'}`}
             >
-              👑 CEO Product Manager
+              ⚙️ Product Manager
             </button>
           </div>
-          <span className="bg-emerald-500/20 text-emerald-400 text-xs px-3 py-1 rounded-full font-bold border border-emerald-500/30">
-            ● AI Sync Engine Online
+          <span className="bg-emerald-500/20 text-emerald-400 text-[10px] px-2 py-0.5 rounded-full font-bold border border-emerald-500/30">
+            ● SYNC LIVE
           </span>
         </div>
       </header>
@@ -142,36 +148,118 @@ export default function DashboardPage() {
       {/* Main Command Dashboard */}
       <div className="flex-1 max-w-[1240px] w-full mx-auto p-6 md:p-8 space-y-8">
 
-        {activeTab === 'pipeline' ? (
-          <>
-            {/* KPI Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              <div className="bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm">
-                <div className="text-xs font-bold text-[#64748B] uppercase tracking-wider">Total Active Pipelines</div>
-                <div className="text-3xl font-black text-[#0B1733] mt-2">24 Orders</div>
-                <div className="text-xs font-bold text-emerald-600 mt-2">↑ 18% vs Last Week</div>
+        {activeTab === 'ceo-command' && (
+          <div className="space-y-6">
+            {/* Health Overview */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              {/* Financial Health */}
+              <div className="bg-gradient-to-br from-[#0B1733] to-[#152e5c] p-6 rounded-2xl text-white shadow-lg border border-white/10">
+                <div className="text-[10px] font-black tracking-widest text-[#43A7E8] uppercase mb-1">Total Revenue (MTD)</div>
+                <div className="text-3xl font-black mb-1">৳৪,৮৫,০০০</div>
+                <div className="text-xs text-[#aebfd5] font-bold">↑ 22% vs Last Month</div>
+                <div className="mt-4 pt-4 border-t border-white/10 flex justify-between text-xs">
+                  <span className="text-[#aebfd5]">Net Margin: 68%</span>
+                  <span className="text-emerald-400 font-bold">TARGET HIT</span>
+                </div>
               </div>
 
-              <div className="bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm">
-                <div className="text-xs font-bold text-[#64748B] uppercase tracking-wider">Monthly Run Rate</div>
-                <div className="text-3xl font-black text-[#1971A5] mt-2">৳48,500</div>
-                <div className="text-xs font-bold text-emerald-600 mt-2">Verified bKash Inflow</div>
+              {/* Conversion Pipeline */}
+              <div className="bg-white p-6 rounded-2xl shadow-sm border border-[#E2E8F0]">
+                <div className="text-[10px] font-black tracking-widest text-[#64748B] uppercase mb-1">Sales Conversion</div>
+                <div className="text-3xl font-black text-[#0B1733] mb-1">28.4%</div>
+                <div className="text-xs text-blue-600 font-bold">120 Leads → 34 Closed</div>
+                <div className="mt-4 w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+                  <div className="bg-blue-600 h-2 rounded-full" style={{ width: '28.4%' }}></div>
+                </div>
               </div>
 
-              <div className="bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm">
-                <div className="text-xs font-bold text-[#64748B] uppercase tracking-wider">Avg. SLA Turnaround</div>
-                <div className="text-3xl font-black text-[#0B1733] mt-2">38.4 Hours</div>
-                <div className="text-xs font-bold text-blue-600 mt-2">Within 48-72h SLA Target</div>
+              {/* Delivery Operations */}
+              <div className="bg-white p-6 rounded-2xl shadow-sm border border-[#E2E8F0]">
+                <div className="text-[10px] font-black tracking-widest text-[#64748B] uppercase mb-1">Avg. Delivery SLA</div>
+                <div className="text-3xl font-black text-[#0B1733] mb-1">36H</div>
+                <div className="text-xs text-emerald-600 font-bold">On-track (Target: 48-72h)</div>
+                <div className="flex justify-between items-center mt-4">
+                  <span className="text-xs font-bold text-gray-500">Active WIP: 14</span>
+                  <span className="text-xs font-bold text-gray-500">Overdue: 0</span>
+                </div>
               </div>
 
-              <div className="bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm">
-                <div className="text-xs font-bold text-[#64748B] uppercase tracking-wider">AI System Accuracy</div>
-                <div className="text-3xl font-black text-emerald-600 mt-2">99.4%</div>
-                <div className="text-xs font-bold text-gray-500 mt-2">Zero Format Defects</div>
+              {/* Courier/System Logs */}
+              <div className="bg-white p-6 rounded-2xl shadow-sm border border-[#E2E8F0] relative overflow-hidden">
+                <div className="text-[10px] font-black tracking-widest text-[#64748B] uppercase mb-1">System Health</div>
+                <div className="text-xl font-black text-[#0B1733] mb-1">All Systems Normal</div>
+                <div className="text-xs font-bold text-emerald-600 mb-3">AI Diagnostic Flow: Active</div>
+                <div className="text-[11px] space-y-1 text-[#64748B] border-l-2 border-gray-200 pl-2">
+                  <p>• Lead Magnet Downloads: +42</p>
+                  <p>• Bounce Rate Maintained: 34%</p>
+                  <p>• DB Backup: Complete</p>
+                </div>
               </div>
             </div>
 
-            {/* Lead & Delivery Pipeline Table */}
+            {/* Sub-panels (Sales vs Fulfillment) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Top Selling Frameworks */}
+              <div className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm p-6">
+                <h3 className="font-black text-sm text-[#0B1733] uppercase tracking-wide mb-4">Top Revenue Drivers (OS & Frameworks)</h3>
+                <div className="space-y-4">
+                  {[
+                    { n: 'Growth Business Profile Suite', rev: '৳1.2L', pct: '28%' },
+                    { n: 'Enterprise Business OS Suite', rev: '৳95K', pct: '22%' },
+                    { n: 'Facebook Commerce OS', rev: '৳68K', pct: '15%' },
+                    { n: 'Product Profitability Audit', rev: '৳45K', pct: '10%' },
+                  ].map((p, i) => (
+                    <div key={i} className="flex items-center justify-between">
+                      <div className="flex flex-col">
+                        <span className="text-sm font-bold text-[#334155]">{p.n}</span>
+                        <div className="w-48 bg-gray-100 rounded-full h-1.5 mt-1 overflow-hidden">
+                          <div className="bg-[#1971A5] h-full" style={{ width: p.pct }}></div>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-sm font-black text-[#0B1733]">{p.rev}</div>
+                        <div className="text-[10px] font-bold text-gray-500">{p.pct} of Total</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Departmental KPI Snapshot */}
+              <div className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm p-6">
+                <h3 className="font-black text-sm text-[#0B1733] uppercase tracking-wide mb-4">Team & Department Matrix</h3>
+                <div className="space-y-3">
+                  <div className="p-3 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl flex justify-between items-center">
+                    <div>
+                      <div className="font-bold text-xs text-[#1971A5]">MARKETING & LEADS</div>
+                      <div className="text-[10px] text-gray-500">CPL: ৳45 | ROAS: 3.2x</div>
+                    </div>
+                    <span className="bg-emerald-100 text-emerald-700 text-[10px] font-black px-2 py-1 rounded">OPTIMIZED</span>
+                  </div>
+
+                  <div className="p-3 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl flex justify-between items-center">
+                    <div>
+                      <div className="font-bold text-xs text-[#1971A5]">SALES CLOSING</div>
+                      <div className="text-[10px] text-gray-500">Drop Rate: 12% | Follow-ups: 4Avg</div>
+                    </div>
+                    <span className="bg-amber-100 text-amber-700 text-[10px] font-black px-2 py-1 rounded">ATTENTION</span>
+                  </div>
+
+                  <div className="p-3 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl flex justify-between items-center">
+                    <div>
+                      <div className="font-bold text-xs text-[#1971A5]">DELIVERY & FULFILLMENT</div>
+                      <div className="text-[10px] text-gray-500">Revision requests: 5% | 5-Star: 92%</div>
+                    </div>
+                    <span className="bg-emerald-100 text-emerald-700 text-[10px] font-black px-2 py-1 rounded">EXCELLENT</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'pipeline' && (
+          <>
             <div className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm overflow-hidden">
               <div className="p-6 border-b border-[#E2E8F0] flex flex-col sm:flex-row justify-between sm:items-center gap-4">
                 <div>
@@ -249,13 +337,13 @@ export default function DashboardPage() {
               </div>
             </div>
           </>
-        ) : (
-          /* CEO Product Manager Section */
+        )}
+
+        {activeTab === 'ceo-products' && (
           <div className="space-y-8">
-            {/* Add Product Form */}
             <div className="bg-white p-6 rounded-2xl border border-[#E2E8F0] shadow-sm">
               <h2 className="text-lg font-black text-[#0B1733] mb-1">
-                👑 CEO Product Management Console
+                👑 Product Management Console
               </h2>
               <p className="text-xs text-[#64748B] mb-6">
                 নতুন পণ্য, মূল্য, বিবরণ যুক্ত করুন এবং হোমপেজের প্রোডাক্টের অগ্রাধিকার/পজিশন সাজান।
@@ -330,7 +418,6 @@ export default function DashboardPage() {
               </form>
             </div>
 
-            {/* Position and Catalog List */}
             <div className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm overflow-hidden p-6">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="font-extrabold text-base text-[#0B1733]">Live Product Ordering & Positions ({productList.length} Items)</h3>
