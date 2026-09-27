@@ -9,6 +9,8 @@ export const metadata = {
   description: "Free pricing calculators, courier return loss calculators, and business growth resources for Bangladeshi entrepreneurs.",
 };
 
+// Removed to move metadata to layout.tsx
+
 export default function FreeToolsPage() {
   return (
     <>

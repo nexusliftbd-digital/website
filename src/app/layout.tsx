@@ -26,10 +26,13 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Nexus Lift — AI-Powered Business Growth Infrastructure Platform",
   description: "Build your business on systems, not only effort. Corporate Business Profiles, F-Commerce OS & AI Automation for Bangladeshi Entrepreneurs. Starter ৳999 · Growth ৳1,499.",
-  metadataBase: new URL("https://nexuslift.shop"),
+  metadataBase: new URL("https://nexuslift.info"),
+  alternates: {
+    canonical: "https://nexuslift.info",
+  },
   openGraph: {
     type: "website",
-    url: "https://nexuslift.shop/",
+    url: "https://nexuslift.info/",
     title: "Nexus Lift — Business Growth Infrastructure Platform",
     description: "Business Profile, SOP Systems & AI Infrastructure. Delivered in 48-72 Hours.",
     siteName: "Nexus Lift",
