@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <filter id="shadow3" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="400" height="300" rx="16" fill="url(#bgGrad3)"/>
+
+  <!-- Phone & System UI Mockup -->
+  <g filter="url(#shadow3)" transform="translate(65, 30)">
+    <!-- Smartphone Frame -->
+    <rect x="0" y="0" width="130" height="230" rx="20" fill="#0B1733" stroke="#334155" stroke-width="4"/>
+    <rect x="8" y="8" width="114" height="214" rx="14" fill="#FFFFFF"/>
+
+    <!-- App Header -->
+    <rect x="8" y="8" width="114" height="36" fill="#1877F2"/>
+    <text x="65" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-weight="900" font-size="10" fill="#FFFFFF">MESSENGER OS</text>
+
+    <!-- Chat Bubbles -->
+    <rect x="14" y="52" width="75" height="24" rx="8" fill="#F1F5F9"/>
+    <text x="20" y="66" font-family="Hind Siliguri, sans-serif" font-size="8" fill="#334155">প্রোডাক্ট প্রাইস কত?</text>
+
+    <rect x="42" y="82" width="74" height="32" rx="8" fill="#0084FF"/>
+    <text x="48" y="96" font-family="Hind Siliguri, sans-serif" font-size="7.5" fill="#FFFFFF">ম্যাম, অফার চলছে!</text>
+    <text x="48" y="106" font-family="Hind Siliguri, sans-serif" font-size="7.5" fill="#FFFFFF">অর্ডার করতে নাম দিন</text>
+
+    <!-- Courier Badge -->
+    <rect x="14" y="122" width="102" height="42" rx="6" fill="#ECFDF5" stroke="#10B981" stroke-width="1"/>
+    <text x="20" y="138" font-family="Inter, sans-serif" font-weight="800" font-size="8" fill="#065F46">STEADFAST / PATHAO</text>
+    <text x="20" y="152" font-family="Inter, sans-serif" font-weight="700" font-size="8" fill="#059669">✓ Return Risk: Low (4%)</text>
+
+    <!-- Unit Economics Widget -->
+    <rect x="14" y="172" width="102" height="40" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+    <text x="20" y="188" font-family="Inter, sans-serif" font-weight="800" font-size="8" fill="#0B1733">PROFIT MARGIN</text>
+    <text x="20" y="202" font-family="Inter, sans-serif" font-weight="900" font-size="11" fill="#16A34A">+34.8% Net</text>
+  </g>
+
+  <!-- Side Floating Metric Badges -->
+  <g transform="translate(215, 60)" filter="url(#shadow3)">
+    <rect x="0" y="0" width="140" height="60" rx="12" fill="#FFFFFF"/>
+    <text x="14" y="24" font-family="Inter, sans-serif" font-weight="800" font-size="10" fill="#64748B">RETURN DROP</text>
+    <text x="14" y="48" font-family="Inter, sans-serif" font-weight="900" font-size="20" fill="#EF4444">-65% LEEK</text>
+  </g>
+
+  <g transform="translate(215, 145)" filter="url(#shadow3)">
+    <rect x="0" y="0" width="140" height="60" rx="12" fill="#FFFFFF"/>
+    <text x="14" y="24" font-family="Inter, sans-serif" font-weight="800" font-size="10" fill="#64748B">INBOX CONVERSION</text>
+    <text x="14" y="48" font-family="Inter, sans-serif" font-weight="900" font-size="20" fill="#10B981">3.2X BOOST</text>
+  </g>
+</svg>

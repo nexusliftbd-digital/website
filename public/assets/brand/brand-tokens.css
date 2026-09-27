@@ -1,0 +1,21 @@
+:root {
+  --nxl-command-navy: #0B1733;
+  --nxl-sovereign-ink: #101828;
+  --nxl-structural-slate: #1E293B;
+  --nxl-canvas-clean: #FFFFFF;
+  --nxl-canvas-soft: #F7FAFC;
+  --nxl-ice-tint: #EAF6FF;
+  --nxl-border-technical: #E4E7EC;
+  --nxl-text-muted: #667085;
+  --nxl-accent-precision: #43A7E8;
+  --nxl-accent-hover: #1971A5;
+  --nxl-status-system: #10B981;
+  --nxl-status-bottleneck: #EF4444;
+  --nxl-status-attention: #F59E0B;
+  --nxl-font-primary: 'Inter', system-ui, sans-serif;
+  --nxl-font-bengali: 'Hind Siliguri', sans-serif;
+  --nxl-font-mono: 'JetBrains Mono', monospace;
+  --nxl-radius-md: 14px;
+  --nxl-radius-lg: 22px;
+  --nxl-shadow-command: 0 18px 60px rgba(11, 23, 51, 0.10);
+}
