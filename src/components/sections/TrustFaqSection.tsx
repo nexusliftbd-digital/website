@@ -25,8 +25,25 @@ const faqs = [
 export default function TrustFaqSection() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  };
+
   return (
     <section className="py-24 bg-white border-b border-[#E4E7EC]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <div className="max-w-[1160px] mx-auto px-4 md:px-0">
         <div className="grid md:grid-cols-[1fr_1.2fr] gap-12 items-start">
           <div>

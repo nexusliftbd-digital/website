@@ -42,10 +42,11 @@ export default function Home() {
               <span className="inline-flex items-center gap-1.5 bg-[#EAF6FF] text-[#125883] px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider mb-3">
                 Connecting Sources, Lifting Business.
               </span>
-              <h1 className="text-4xl md:text-[64px] leading-[1.06] tracking-tight text-[#0B1733] font-black my-4">
+              <h1 className="sr-only">Nexus Lift: Business Growth Infrastructure, AI Automation & F-Commerce Systems in Bangladesh</h1>
+              <div aria-hidden="true" className="text-4xl md:text-[64px] leading-[1.06] tracking-tight text-[#0B1733] font-black my-4">
                 আপনার Business আছে।<br />
                 <span className="text-[#1971a5]">কিন্তু Business System আছে কি?</span>
-              </h1>
+              </div>
               <p className="text-[17px] text-[#667085] max-w-[620px] leading-relaxed">
                 Business Chaos থেকে Systematic Growth — Nexus Lift আপনার প্রয়োজন অনুযায়ী
                 Research-backed Brand, Structure, Operations, Growth, AI এবং Management System তৈরি করে।

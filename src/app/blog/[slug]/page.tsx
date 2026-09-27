@@ -21,8 +21,40 @@ export default function BlogPostDetails() {
     );
   }
 
+  const articleSchema = post ? {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.banglaTitle,
+    "alternativeHeadline": post.title,
+    "description": post.excerpt,
+    "inLanguage": "bn-BD",
+    "author": {
+      "@type": "Organization",
+      "name": "Nexus Lift Research Team",
+      "url": "https://nexuslift.info"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Nexus Lift",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nexuslift.info/assets/brand/nexus-lift-og-card.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://nexuslift.info/blog/${post.slug}`
+    }
+  } : null;
+
   return (
     <>
+      {articleSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
+      )}
       <Navbar />
       <main className="flex-1 bg-[#F8FAFC]">
         {/* Post Hero */}
