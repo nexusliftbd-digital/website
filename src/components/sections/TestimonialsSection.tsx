@@ -9,6 +9,7 @@ const stories = [
     metric: "রিটার্ন লস কমেছে ৩৮%",
     quote: "Facebook Commerce OS এবং ডেলিভারি ট্র্যাকার ব্যবহার করার পর আমাদের কুরিয়ার রিটার্ন এক মাসে ৩৮% কমে গেছে। ইনবক্স সেলস স্ক্রিপ্টগুলো আসলেই গেম-চেঞ্জার!",
     badge: "F-Commerce OS",
+    image: "/assets/brand/user-1.jpg"
   },
   {
     name: "মেহরাব হোসেন",
@@ -16,6 +17,7 @@ const stories = [
     metric: "৳২৫ লাখের টেন্ডার জয়",
     quote: "Nexus Lift-এর Premium Corporate Profile দিয়ে আমরা প্রথমবার একটি মাল্টিন্যাশনাল টেন্ডারে বিড করে সফল হয়েছি। প্রোফাইলের রিসার্চ এবং ডিজাইন ক্লায়েন্টকে ভরসা দিয়েছে।",
     badge: "Corporate Profile",
+    image: "/assets/brand/user-2.jpg"
   },
   {
     name: "রাফিয়া সুলতানা",
@@ -23,6 +25,7 @@ const stories = [
     metric: "মালিকের দৈনিক ৩ ঘণ্টা সময় সাশ্রয়",
     quote: "সব কাজ আমাকেই করতে হতো। Founder Delegation OS নেওয়ার পর টিমকে স্পষ্ট রোল এবং এসওপি বুঝিয়ে দিতে পেরেছি। এখন ব্যবসা আমাকে ছাড়া স্মুথলি চলে।",
     badge: "Delegation OS",
+    image: "/assets/brand/user-3.jpg"
   },
 ];
 
@@ -65,9 +68,11 @@ export default function TestimonialsSection() {
               </div>
 
               <div className="pt-4 border-t border-gray-100 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#0B1733] text-white flex items-center justify-center font-black text-xs">
-                  {s.name[0]}
-                </div>
+                <img
+                  src={s.image}
+                  alt={s.name}
+                  className="w-10 h-10 rounded-full object-cover border-2 border-[#1971A5] shadow-sm"
+                />
                 <div>
                   <div className="text-xs font-black text-[#0B1733]">{s.name}</div>
                   <div className="text-[11px] text-gray-500">{s.company}</div>

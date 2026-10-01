@@ -6,6 +6,13 @@ export type ProductCategory =
   | 'team'          // 👥 5. Build Your Team (HR, Roles, Onboarding, KPIs, Meetings)
   | 'executive';    // 🤖 6. Scale With AI & OS (Executive OS, CEO Dashboard, AI Agents)
 
+export type ProductStatus = 'live' | 'turned_off' | 'out_of_stock';
+
+export interface ProductFAQ {
+  q: string;
+  a: string;
+}
+
 export interface ProductDef {
   id: string;
   title: string;
@@ -17,12 +24,39 @@ export interface ProductDef {
   features: string[];
   tagline?: string;
   popular?: boolean;
+  status?: ProductStatus;
+  painPoint?: string;
+  faqs?: ProductFAQ[];
 }
 
 export const products: ProductDef[] = [
   // ════════════════════════════════════════════════════════════
   // 1. BUILD YOUR BUSINESS (Brand, Identity & Legal Readiness)
   // ════════════════════════════════════════════════════════════
+  {
+    id: "brand-guideline-system",
+    title: "Brand Identity & Guideline System",
+    tagline: "সাইন্টিফিক লোগো ও ব্র্যান্ড রুলবুক",
+    cat: "foundation",
+    badge: "🔥 BEST VALUE",
+    price: "৳2,600",
+    desc: "প্রিমিয়াম কনসেপ্ট লোগো এবং ২০+ পেজের সম্পূর্ণ ব্র্যান্ড বুক (কালার কোড, ফন্টস, মকআপ ও স্টোরিলাইন)। রেগুলার প্রাইস ৳৩,০০০।",
+    painPoint: "আপনার ব্র্যান্ডের কোনো নির্দিষ্ট কালার কোড বা গাইডলাইন নেই? ক্যানভার সাধারণ লোগো দিয়ে ট্রাস্ট তৈরি হচ্ছে না?",
+    faqs: [
+      { q: "কেন এই সিস্টেমের মূল্য ৳২,৬০০?", a: "কারণ এটি শুধু একটি ছবি নয়। আমরা মার্কেট রিসার্চ, পেন্সিল ড্রাফট, কালার সাইকোলজি, ৪টি ব্যাকগ্রাউন্ড টেস্ট (White, Black, Red, Green) এবং ২০+ পেজের কমপ্লিট ডু/ডোন্টস গাইডলাইন তৈরি করি।" },
+      { q: "আমি কি প্রিন্ট করার জন্য ভেক্টর ফাইল পাবো?", a: "অবশ্যই! বিলবোর্ড থেকে ভিজিটিং কার্ড—যেকোনো সাইজে ব্যবহার করার জন্য অরিজিনাল AI, EPS, PDF এবং SVG ভেক্টর ফাইল দেওয়া হয়।" }
+    ],
+    img: "/assets/products/p_corp_profile.svg", // Fallback image since brand specific doesn't exist yet, can be updated later
+    features: [
+      "🧠 ইন্ডাস্ট্রি রিসার্চ ও পেন্সিল স্কেচিং কনসেপ্ট",
+      "🎭 সাইন্টিফিক কালার সাইকোলজি ও এক্সাক্ট হেক্স কোড",
+      "⬛ 4-Background Fit Test (Black, White, Red, Green)",
+      "📐 ভেক্টর রিভার্সিবিলিটি ও প্রিন্ট রেডি সোর্স ফাইল",
+      "📖 কমপ্লিট ব্র্যান্ড গাইড রুলবুক (Do's & Don'ts)"
+    ],
+    status: "live",
+    popular: true,
+  },
   {
     id: "starter-profile",
     title: "Starter Business Profile",
@@ -31,6 +65,11 @@ export const products: ProductDef[] = [
     badge: "STARTER",
     price: "৳999",
     desc: "নতুন উদ্যোক্তা ও ফ্রিল্যান্সারদের জন্য ৬–৮ পৃষ্ঠার ফাউন্ডেশন বিজনেস প্রোফাইল।",
+    painPoint: "অগোছালো প্রেজেন্টেশনের কারণে বারবার ক্লায়েন্ট হারাচ্ছেন? প্রফেশনাল কোম্পানির মত নিজেকে উপস্থাপন করতে পারছেন না?",
+    faqs: [
+      { q: "এটি রেডি হতে কতদিন লাগবে?", a: "সর্বোচ্চ ৪৮ ঘণ্টার মধ্যে আমরা আপনাকে ড্রাইভ লিংক বুঝিয়ে দিবো।" },
+      { q: "আমি কি পরে এটি এডিট করতে পারবো?", a: "হ্যাঁ, আমরা আপনাকে এডিটেবল সোর্স ফাইলও দিয়ে দিবো।" }
+    ],
     img: "/assets/products/p_starter_profile.svg",
     features: [
       "৬–৮ পৃষ্ঠার প্রফেশনাল লেআউট ও স্ট্রাকচার",
@@ -45,10 +84,15 @@ export const products: ProductDef[] = [
     title: "Growth Business Profile Suite",
     tagline: "SME ও এফ-কমার্সের জন্য পূর্ণ পরিচয়",
     cat: "foundation",
-    badge: "🔥 FLAGSHIP",
+    badge: "🔥 HERO",
     price: "৳1,499",
     popular: true,
     desc: "রিসার্চ-ভিত্তিক ১২–১৫ পৃষ্ঠার পূর্ণাঙ্গ প্রেজেন্টেশন ও ক্লায়েন্ট ট্রাস্ট স্যুট।",
+    painPoint: "আপনার বিজনেসের ভালো ভ্যালু থাকা সত্ত্বেও ট্রাস্টের অভাবে সেলস ড্রপ হচ্ছে? ক্লায়েন্ট বড় প্রোফাইল দেখতে চায়?",
+    faqs: [
+      { q: "বিজনেস প্রোফাইলে কি কি থাকে?", a: "আমাদের профиле-এ ফাউন্ডার স্টোরি, ভ্যালু প্রপোজিশন, ক্লায়েন্ট টেস্টিমোনিয়াল সহ ১২-১৫ পৃষ্ঠার রিসার্চ ডেটা থাকে।" },
+      { q: "আমাদের কোম্পানি নতুন, এটি কি আমাদের জন্য কাজ করবে?", a: "অবশ্যই, নতুন কোম্পানির ট্রাস্ট বিল্ড করার জন্যই এটি সবচেয়ে বেশি প্রয়োজন।" }
+    ],
     img: "/assets/products/p_growth_profile.svg",
     features: [
       "১২–১৫ পৃষ্ঠার রিসার্চ-ব্যাকড কর্পোরেট প্রোফাইল",
@@ -67,6 +111,11 @@ export const products: ProductDef[] = [
     price: "৳2,999",
     popular: true,
     desc: "বড় B2B ডিল, ব্যাংক লোন ও টেন্ডারের জন্য ৩০–৪০ পৃষ্ঠার ইনস্টিটিউশনাল প্রোফাইল।",
+    painPoint: "বড় মাল্টিন্যাশনাল বা সরকারি টেন্ডারে বিড করতে পারছেন না? সাধারণ প্রোফাইল দেখে বড় ক্লায়েন্ট বিশ্বাস করতে চায় না?",
+    faqs: [
+      { q: "এটি টেন্ডার ও ব্যাংকের জন্য উপযুক্ত তো?", a: "হ্যাঁ, এতে ফিন্যান্সিয়াল ক্যাপাসিটি, কমপ্লায়েন্স এবং কোয়ালিটি পলিসির পূর্ণাঙ্গ ইনস্টিটিউশনাল ফরম্যাট অন্তর্ভুক্ত রয়েছে।" },
+      { q: "কত পৃষ্ঠার প্রোফাইল তৈরি হয়?", a: "সাধারণত ৩০ থেকে ৪০ পৃষ্ঠার কমপ্লিট ইনস্টিটিউশনাল ডেক।" }
+    ],
     img: "/assets/products/p_corp_profile.svg",
     features: [
       "৩০–৪০ পৃষ্ঠার ইনস্টিটিউশনাল মাস্টার ডেক",
@@ -84,6 +133,10 @@ export const products: ProductDef[] = [
     badge: "BRAND KIT",
     price: "৳1,499",
     desc: "ব্র্যান্ড পজিশনিং, টার্গেট কাস্টমার ডিফিনিশন এবং কমিউনিকেশন রুলস সেটআপ।",
+    painPoint: "আপনার ব্র্যান্ডের কোনো ইউনিক আইডেন্টিটি নেই? বিজ্ঞাপনে টাকা খরচ হলেও ব্র্যান্ড রিকল হচ্ছে না?",
+    faqs: [
+      { q: "ব্র্যান্ড কিটে কী কী পাওয়া যাবে?", a: "ব্র্যান্ড ভয়েস, টোন, টার্গেট কাস্টমার ক্ল্যারিটি ও কমিউনিকেশন রুলস সহ সম্পূর্ণ গাইড।" }
+    ],
     img: "/assets/products/p_mod_brandkit.svg",
     features: [
       "Brand Positioning & Target Customer Clarity",
@@ -101,6 +154,10 @@ export const products: ProductDef[] = [
     badge: "PITCH DECK",
     price: "৳1,999",
     desc: "হাই-ইমপ্যাক্ট স্লাইড ডেক যা মিটিং ও পিচে আপনার ভ্যালু তুলে ধরে।",
+    painPoint: "ক্লায়েন্ট মিটিং বা ইনভেস্টর পিচে স্লাইডগুলো আকর্ষক মনে হচ্ছে না? ডেটা ঠিকভাবে উপস্থাপন করতে পারছেন না?",
+    faqs: [
+      { q: "স্লাইডগুলো কি এডিট করা যাবে?", a: "হ্যাঁ, সম্পূর্ণ এডিটেবল PowerPoint (.pptx) এবং Google Slides ফরম্যাটে ডেলিভারি পাবেন।" }
+    ],
     img: "/assets/products/p_starter_profile.svg",
     features: [
       "১৫–২০ স্লাইডের হাই-কনভার্টিং স্লাইড ডেক",
@@ -118,6 +175,10 @@ export const products: ProductDef[] = [
     badge: "CATALOGUE",
     price: "৳1,499",
     desc: "প্রোডাক্ট ও সার্ভিসের মূল্য, প্যাকেজ ও অফার সুন্দরভাবে উপস্থাপনের বুকলেট।",
+    painPoint: "গ্রাহকদের প্রোডাক্ট বা সার্ভিসের রেট ও ফিচার পাঠাতে মেসেঞ্জারে অনেক সময় নষ্ট হচ্ছে?",
+    faqs: [
+      { q: "এটি কি পিডিএফ আকারে হোয়াটসঅ্যাপে শেয়ার করা যাবে?", a: "হ্যাঁ, যেকোনো ডিভাইসে পড়ার উপযোগী হাই-রেজুলেশন ডিজিটাল ও প্রিন্ট-রেডি ফরম্যাট পাবেন।" }
+    ],
     img: "/assets/products/p_mod_brandkit.svg",
     features: [
       "১০–১৬ পৃষ্ঠার পূর্ণাঙ্গ প্রোডাক্ট ক্যাটালগ",
@@ -135,6 +196,10 @@ export const products: ProductDef[] = [
     badge: "COMPLIANCE",
     price: "৳1,699",
     desc: "কর্পোরেট ও সরকারি টেন্ডারে যোগ্যতা প্রমাণ করার ডকুমেন্টেশন স্ট্রাকচার।",
+    painPoint: "ভেন্ডর এনলিস্টমেন্ট বা টেন্ডার ফর্ম পূরণ করতে গিয়ে ডকুমেন্টের ঘাটতির কারণে রিজেক্ট হচ্ছেন?",
+    faqs: [
+      { q: "কী কী কমপ্লায়েন্স ফরম্যাট থাকে?", a: "কোয়ালিটি পলিসি, সেফটি ডিক্লেয়ারেশন, ফিন্যান্সিয়াল অডিট ফরম্যাট ও এক্সপেরিয়েন্স ম্যাট্রিক্স।" }
+    ],
     img: "/assets/products/p_corp_profile.svg",
     features: [
       "Tender Document Structure & Table of Contents",
@@ -148,16 +213,45 @@ export const products: ProductDef[] = [
   // ════════════════════════════════════════════════════════════
   // 2. GET MORE CUSTOMERS (Sales, Scripts, Pipelines & Recovery)
   // ════════════════════════════════════════════════════════════
+
+  {
+    id: "custom-conversion-website",
+    title: "High-Converting Conversion Website",
+    tagline: "আপনার ব্যবসার ডিজিটাল হেডকোয়ার্টার",
+    cat: "sales",
+    badge: "🔥 HERO",
+    price: "৳24,999+",
+    popular: true,
+    desc: "সীসা ক্যাপচার, কাস্টম ফানেল এবং অটোমেশন ইন্টিগ্রেশন সহ প্রফেশনাল কনভার্সন ওয়েবসাইট।",
+    painPoint: "ফেসবুক পেজে ইনবক্স ম্যানেজ করতে করতে হয়রান? ওয়েবসাইট ভিজিটর আসছে কিন্তু সেলস হচ্ছে না?",
+    faqs: [
+      { q: "এই ওয়েবসাইট কি મોબাইল ফ্রেন্ডলি?", a: "হ্যাঁ, আমাদের প্রতিটি কনভার্সন ওয়েবসাইট ১০০% রেস্পনসিভ এবং মোবাইল ফার্স্ট ডিজাইনে তৈরি।" },
+      { q: "এটি क्या হোয়াটসঅ্যাপের সাথে কানেক্টেড?", a: "হ্যাঁ, ডিরেক্ট Make.com এবং হোয়াটসঅ্যাপ এপিআই-এর মাধ্যমে অটোমেশন সেটআপ করা থাকে।" }
+    ],
+    img: "/assets/products/p_conversion_website.svg",
+    features: [
+      "অটোমেটেড লিড ক্যাপচার এবং Make.com ইন্টিগ্রেশন",
+      "হাই-কনভার্টিং ল্যান্ডিং পেজ ফ্রেমওয়ার্ক",
+      "পিক্সেল এবং কনভার্সন এপিআই সেটআপ",
+      "ডায়নামিক হোয়াটসঅ্যাপ চ্যাটবট ইন্টিগ্রেশন",
+      "ফুল-স্ট্যাক এসইও অপ্টিমাইজেশন",
+    ],
+  },
   {
     id: "crm-7tab-starter",
-    title: "CRM 7-Tab Starter Architecture",
-    tagline: "লিড থেকে পেমেন্ট — ট্র্যাক করুন এক নজরে",
+    title: "Custom CRM Dashboard",
+    tagline: "কাস্টম সিআরএম এবং অটোমেটেড লিড পাইপলাইন",
     cat: "sales",
-    badge: "CRM STARTER",
+    badge: "🔥 HERO",
     price: "৳999",
     popular: true,
     desc: "লিড ট্র্যাকিং, সেলস পাইপলাইন ও ক্লায়েন্ট ডাটাবেজের জন্য ক্লাউড ট্র্যাকার।",
-    img: "/assets/products/p_mod_crm.svg",
+    painPoint: "লিড হারিয়ে যাচ্ছে? কে পেমেন্ট করেছে আর কে করেনি তার কোনো হিসাব রাখতে পারছেন না?",
+    faqs: [
+      { q: "আমি কি আমার মোবাইল থেকে এটি দেখতে পারবো?", a: "অবশ্যই, ক্লাউড ট্র্যাকার হওয়ায় স্মার্টফোন থেকেই সবকিছু কন্ট্রোল করতে পারবেন।" },
+      { q: "ডেটা কতটা নিরাপদ?", a: "আপনার ডেটা আপনার নিজস্ব Google সার্ভার/ব্রাইভে স্টোর থাকবে, ১০০% নিরাপদ এবং প্রাইভেট।" }
+    ],
+    img: "/assets/products/p_crm_dashboard.svg",
     features: [
       "Lead Capture & Scoring System",
       "Sales Pipeline Stage Progression",

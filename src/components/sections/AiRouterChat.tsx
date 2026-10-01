@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Message {
@@ -15,65 +15,57 @@ interface Message {
 }
 
 export default function AiRouterChat() {
+  const quickChips = [
+    { label: "📦 কুরিয়ার রিটার্ন কমাব", query: "আমার এফ-কমার্স বিজনেসে কুরিয়ার রিটার্ন অনেক বেশি, কীভাবে সমাধান করব?" },
+    { label: "📄 কোম্পানি প্রোফাইল চাই", query: "আমার ক্লায়েন্ট মিটিং ও টেন্ডারের জন্য প্রফেশনাল কোম্পানি প্রোফাইল দরকার।" },
+    { label: "💰 ফাইন্যান্স ও প্রফিট ট্র্যাকিং", query: "বিজনেস প্রফিট ও কস্টিং কন্ট্রোল করার কোনো এক্সেল সিস্টেম আছে কি?" },
+    { label: "⚙️ ফুল বিজনেস ওএস (OS)", query: "ব্যবসার সম্পূর্ণ টিম ও অপারেশন্স অটোমেট করার গাইড দরকার।" },
+  ];
+
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      text: 'সালাম! আমি Nexus Lift AI সিস্টেম আর্কিটেক্ট। আপনার ব্যবসা কোন ধরনের এবং বর্তমানে সবচেয়ে বড় সমস্যা কী হচ্ছে? (যেমন: কুরিয়ার রিটার্ন, প্রফেশনাল প্রোফাইলের অভাব, বা অপারেশন্স অগোছালো)'
+      text: 'সালাম! আমি Nexus Lift AI সিস্টেম আর্কিটেক্ট। আপনার ব্যবসা কোন ধরনের এবং বর্তমানে সবচেয়ে বড় চ্যালেঞ্জ কী? (যেমন: কুরিয়ার রিটার্ন, প্রফেশনাল প্রোফাইলের অভাব, বা অগোছালো অপারেশন্স)'
     }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const chatBottomRef = useRef<HTMLDivElement>(null);
 
-  const handleSend = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim()) return;
+  useEffect(() => {
+    chatBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, isTyping]);
 
-    const userText = input;
-    setMessages((prev) => [...prev, { role: 'user', text: userText }]);
+  const processQuery = async (userText: string) => {
+    if (!userText.trim()) return;
+
+    const newMessages = [...messages, { role: 'user', text: userText }];
+    setMessages(newMessages as Message[]);
     setInput('');
     setIsTyping(true);
 
-    setTimeout(() => {
-      let replyText = '';
-      let rec = undefined;
-
-      const lower = userText.toLowerCase();
-      if (lower.includes('f-commerce') || lower.includes('রিটার্ন') || lower.includes('কুরিয়ার') || lower.includes('courier') || lower.includes('ইনবক্স')) {
-        replyText = 'আপনার F-Commerce বা ডেলিভারি রিটার্ন সমস্যার জন্য আমাদের "Facebook Commerce OS" আদর্শ। এতে কুরিয়ার ভেরিফিকেশন এবং হাই-কনভার্টিং ইনবক্স স্ক্রিপ্ট রয়েছে।';
-        rec = {
-          title: "Facebook Commerce OS",
-          price: "৳1,499",
-          badge: "RECOMMENDED",
-          waUrl: `https://wa.me/8801814716713?text=${encodeURIComponent("সালাম, AI Router সুপারিশকৃত Facebook Commerce OS সম্পর্কে জানতে চাই।")}`
-        };
-      } else if (lower.includes('profile') || lower.includes('প্রোফাইল') || lower.includes('b2b') || lower.includes('ক্লায়েন্ট') || lower.includes('টেন্ডার')) {
-        replyText = 'ক্লায়েন্ট বায়ার কনভার্সন এবং প্রফেশনাল ব্র্যান্ডিংয়ের জন্য "Growth Business Profile Suite" ১২-১৫ পৃষ্ঠার রিসার্চ-ব্যাকড ফাইল দিয়ে আপনার বিশ্বাসযোগ্যতা সর্বোচ্চ পর্যায়ে নিয়ে যাবে।';
-        rec = {
-          title: "Growth Business Profile Suite",
-          price: "৳1,499",
-          badge: "FLAGSHIP MATCH",
-          waUrl: `https://wa.me/8801814716713?text=${encodeURIComponent("সালাম, AI Router সুপারিশকৃত Growth Business Profile সম্পর্কে জানতে চাই।")}`
-        };
-      } else {
-        replyText = 'আপনার ব্যবসার প্রয়োজন বিশ্লেষণ করা হয়েছে। পুরো সিস্টেমকে একটি স্ট্যান্ডার্ড কাঠামোর আওতায় আনতে আমাদের ফাউন্ডেশন বা এন্টারপ্রাইজ সিস্টেম আর্কিটেকচার গ্রহণ করতে পারেন।';
-        rec = {
-          title: "Starter Business Profile",
-          price: "৳999",
-          badge: "FOUNDATION MATCH",
-          waUrl: `https://wa.me/8801814716713?text=${encodeURIComponent("সালাম, AI Router সুপারিশকৃত Starter Business Profile প্যাকেজটি সম্পর্কে জানতে চাই।")}`
-        };
-      }
-
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: 'assistant',
-          text: replyText,
-          recommendation: rec
-        }
-      ]);
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: userText, history: newMessages })
+      });
+      const data = await response.json();
+      setMessages((prev) => [...prev, {
+        role: 'assistant',
+        text: data.reply,
+        recommendation: data.recommendation || undefined
+      }]);
+    } catch (e) {
+      console.error(e);
+    } finally {
       setIsTyping(false);
-    }, 900);
+    }
+  };
+
+  const handleSend = (e: React.FormEvent) => {
+    e.preventDefault();
+    processQuery(input);
   };
 
   return (
@@ -87,7 +79,7 @@ export default function AiRouterChat() {
             <h2 className="text-3xl md:text-[40px] font-black tracking-tight text-[#0B1733] leading-tight mb-4">
               আপনার ব্যবসার জন্য কোন সিস্টেমটি সঠিক?
             </h2>
-            <p className="text-[#667085] text-base leading-relaxed mb-6">
+            <p className="text-[#374151] text-base leading-relaxed mb-6">
               আমাদের ইন্টেলিজেন্ট এআই রাউটারের সাথে কথা বলে কয়েক সেকেন্ডেই আপনার বর্তমান চ্যালেঞ্জ অনুযায়ী সেরা সমাধান ও সিস্টেম প্যাকেজ নির্বাচন করুন।
             </p>
 
@@ -108,8 +100,8 @@ export default function AiRouterChat() {
           </div>
 
           {/* Live Chat Box */}
-          <div className="bg-white rounded-3xl border border-[#E2E8F0] shadow-xl overflow-hidden flex flex-col h-[520px]">
-            <div className="bg-[#0B1733] text-white px-6 py-4 flex items-center justify-between">
+          <div className="bg-white rounded-3xl border border-[#E2E8F0] shadow-xl overflow-hidden flex flex-col h-[560px]">
+            <div className="bg-[#0B1733] text-white px-6 py-4 flex items-center justify-between shrink-0">
               <div className="flex items-center gap-3">
                 <div className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></div>
                 <div>
@@ -121,7 +113,7 @@ export default function AiRouterChat() {
             </div>
 
             {/* Chat message flow */}
-            <div className="flex-1 p-5 overflow-y-auto space-y-4">
+            <div className="flex-1 p-5 overflow-y-auto space-y-4 bg-[#FAFBFD]">
               <AnimatePresence>
                 {messages.map((m, idx) => (
                   <motion.div
@@ -131,10 +123,10 @@ export default function AiRouterChat() {
                     className={`flex flex-col ${m.role === 'user' ? 'items-end' : 'items-start'}`}
                   >
                     <div
-                      className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
+                      className={`max-w-[88%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                         m.role === 'user'
-                          ? 'bg-[#1971A5] text-white rounded-br-none'
-                          : 'bg-[#F1F5F9] text-[#1E293B] rounded-bl-none font-medium'
+                          ? 'bg-[#1971A5] text-white rounded-br-none shadow-sm'
+                          : 'bg-white border border-[#E2E8F0] text-[#1E293B] rounded-bl-none font-medium shadow-sm'
                       }`}
                     >
                       {m.text}
@@ -144,7 +136,7 @@ export default function AiRouterChat() {
                       <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="mt-3 max-w-[85%] bg-[#EAF6FF] border border-[#BAE6FD] rounded-2xl p-4 text-left"
+                        className="mt-3 max-w-[88%] bg-[#EAF6FF] border border-[#BAE6FD] rounded-2xl p-4 text-left shadow-sm"
                       >
                         <div className="text-[10px] font-black text-[#0369A1] uppercase tracking-wider mb-1">
                           {m.recommendation.badge}
@@ -159,7 +151,7 @@ export default function AiRouterChat() {
                           href={m.recommendation.waUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="mt-3 block w-full py-2 bg-[#25D366] text-white text-xs font-bold text-center rounded-lg hover:bg-[#1eb956] transition shadow-sm"
+                          className="mt-3 block w-full py-2.5 bg-[#25D366] text-white text-xs font-bold text-center rounded-xl hover:bg-[#1eb956] transition shadow-md"
                         >
                           💬 WhatsApp-এ কনফার্ম করুন
                         </a>
@@ -169,22 +161,45 @@ export default function AiRouterChat() {
                 ))}
               </AnimatePresence>
               {isTyping && (
-                <div className="text-xs text-[#64748B] italic">Nexus AI লিখছে...</div>
+                <div className="text-xs text-[#64748B] italic flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 bg-[#1971A5] rounded-full animate-bounce"></span>
+                  <span className="w-1.5 h-1.5 bg-[#1971A5] rounded-full animate-bounce [animation-delay:0.2s]"></span>
+                  <span className="w-1.5 h-1.5 bg-[#1971A5] rounded-full animate-bounce [animation-delay:0.4s]"></span>
+                  <span className="ml-1">Nexus AI লিখছে...</span>
+                </div>
               )}
+              <div ref={chatBottomRef} />
+            </div>
+
+            {/* Quick Click Chips */}
+            <div className="px-4 py-2.5 bg-white border-t border-[#E2E8F0] shrink-0">
+              <div className="text-[10px] font-bold text-gray-400 mb-1.5">দ্রুত সাজেশনের জন্য বেছে নিন:</div>
+              <div className="flex gap-1.5 overflow-x-auto no-scrollbar pb-1">
+                {quickChips.map((chip, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => processQuery(chip.query)}
+                    className="text-[11px] font-bold bg-[#F1F5F9] text-[#0B1733] hover:bg-[#1971A5] hover:text-white px-3 py-1.5 rounded-xl transition border border-gray-200 shrink-0"
+                  >
+                    {chip.label}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Input form */}
-            <form onSubmit={handleSend} className="p-3 border-t border-[#E2E8F0] bg-white flex gap-2">
+            <form onSubmit={handleSend} className="p-3 bg-white border-t border-[#E2E8F0] flex gap-2 shrink-0">
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="আপনার ব্যবসার ধরন বা সমস্যা লিখুন..."
+                placeholder="সমস্যা লিখুন বা ফোন নম্বর দিন..."
                 className="flex-1 px-4 py-2.5 text-sm border border-[#D0D5DD] rounded-xl focus:outline-none focus:border-[#1971A5]"
               />
               <button
                 type="submit"
-                className="bg-[#0B1733] text-white px-5 py-2.5 rounded-xl text-xs font-extrabold hover:bg-black transition"
+                className="bg-[#0B1733] text-white px-5 py-2.5 rounded-xl text-xs font-extrabold hover:bg-[#1971A5] transition"
               >
                 পাঠান
               </button>

@@ -1,1 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" rx="16" fill="#0B1733"/><rect x="20" y="20" width="360" height="260" rx="14" fill="#EAF6FF" opacity="0.08" stroke="#43A7E8"/><text x="200" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-weight="900" font-size="22" fill="#43A7E8">DIGITAL VAULT</text><text x="200" y="170" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#EAF6FF">Drive Architecture</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgVault" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#071127"/>
+      <stop offset="100%" stop-color="#0B1733"/>
+    </linearGradient>
+    <linearGradient id="vaultGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4338CA"/>
+      <stop offset="100%" stop-color="#312E81"/>
+    </linearGradient>
+    <filter id="shadowVault" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <rect width="400" height="300" rx="16" fill="url(#bgVault)"/>
+
+  <g filter="url(#shadowVault)" transform="translate(30, 25)">
+    <rect x="0" y="0" width="340" height="230" rx="12" fill="#0F172A" stroke="#1E293B" stroke-width="1.5"/>
+
+    <!-- Header Panel -->
+    <rect x="0" y="0" width="340" height="42" rx="12" fill="url(#vaultGrad)"/>
+    <rect x="0" y="24" width="340" height="18" fill="url(#vaultGrad)"/>
+    <text x="20" y="26" font-family="Inter, sans-serif" font-weight="900" font-size="12" fill="#FFFFFF">SECURE DIGITAL ASSET VAULT</text>
+
+    <!-- Main Container -->
+    <rect x="18" y="56" width="304" height="158" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+
+    <!-- Left File Hierarchy Tree -->
+    <rect x="30" y="68" width="140" height="134" rx="6" fill="#0B132B"/>
+    <text x="42" y="86" font-family="Inter, sans-serif" font-size="8" font-weight="900" fill="#818CF8">📁 NEXUS DRIVE STRUCTURE</text>
+
+    <!-- Folder Items -->
+    <g transform="translate(42, 96)">
+      <!-- 01 Brand -->
+      <rect x="0" y="0" width="116" height="18" rx="3" fill="#1E293B"/>
+      <text x="8" y="12" font-family="Inter, sans-serif" font-size="7" font-weight="700" fill="#E2E8F0">📂 01_Brand_Assets_Master</text>
+
+      <!-- 02 SOPs -->
+      <rect x="0" y="22" width="116" height="18" rx="3" fill="#1E293B"/>
+      <text x="8" y="34" font-family="Inter, sans-serif" font-size="7" font-weight="700" fill="#E2E8F0">📂 02_SOPs_Standard_Ops</text>
+
+      <!-- 03 Finance -->
+      <rect x="0" y="44" width="116" height="18" rx="3" fill="#1E293B"/>
+      <text x="8" y="56" font-family="Inter, sans-serif" font-size="7" font-weight="700" fill="#E2E8F0">📂 03_Finance_Tax_Audit</text>
+
+      <!-- 04 Legal -->
+      <rect x="0" y="66" width="116" height="18" rx="3" fill="#1E293B"/>
+      <text x="8" y="78" font-family="Inter, sans-serif" font-size="7" font-weight="700" fill="#E2E8F0">📂 04_Legal_Contracts_NDA</text>
+    </g>
+
+    <!-- Right Security Status / Permissions -->
+    <rect x="180" y="68" width="130" height="134" rx="6" fill="#0B132B"/>
+    <text x="190" y="86" font-family="Inter, sans-serif" font-size="8" font-weight="900" fill="#10B981">🔒 ACCESS CONTROLS</text>
+
+    <rect x="190" y="96" width="110" height="24" rx="4" fill="#064E3B"/>
+    <text x="196" y="108" font-family="Inter, sans-serif" font-size="6.5" font-weight="800" fill="#6EE7B7">Role: CEO / Founder</text>
+    <text x="196" y="116" font-family="Inter, sans-serif" font-size="6" fill="#A7F3D0">Full Root Authority</text>
+
+    <rect x="190" y="126" width="110" height="24" rx="4" fill="#1E3A8A"/>
+    <text x="196" y="138" font-family="Inter, sans-serif" font-size="6.5" font-weight="800" fill="#93C5FD">Role: Ops &amp; Team</text>
+    <text x="196" y="146" font-family="Inter, sans-serif" font-size="6" fill="#BFDBFE">Restricted Read-Only</text>
+
+    <rect x="190" y="156" width="110" height="34" rx="4" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <text x="196" y="168" font-family="Inter, sans-serif" font-size="6.5" font-weight="800" fill="#F59E0B">⚡ Auto Cloud Backup</text>
+    <text x="196" y="180" font-family="Inter, sans-serif" font-size="6" fill="#94A3B8">Encrypted Mirror Sync</text>
+  </g>
+</svg>

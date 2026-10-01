@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Hind_Siliguri } from "next/font/google";
+import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
 import MetaPixel from "@/components/marketing/MetaPixel";
+import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
+import SocialProofToast from "@/components/ui/SocialProofToast";
+import MobileStickyBar from "@/components/ui/MobileStickyBar";
 import "./globals.css";
 
 const inter = Inter({
@@ -140,8 +144,13 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased text-[#101828] bg-white min-h-screen flex flex-col">
+        <GoogleTagManager gtmId="GTM-XXXXXXX" />
+        <GoogleAnalytics gaId="G-XXXXXXXXXX" />
         <MetaPixel />
         {children}
+        <FloatingWhatsApp />
+        <SocialProofToast />
+        <MobileStickyBar />
       </body>
     </html>
   );

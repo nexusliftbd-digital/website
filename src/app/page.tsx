@@ -1,30 +1,108 @@
+import React from 'react';
+import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
+import HeroSystemHealthCard from '@/components/sections/HeroSystemHealthCard';
 import HomeProductCarousel from '@/components/sections/HomeProductCarousel';
 import ProductGrid from '@/components/sections/ProductGrid';
 import ProblemSection from '@/components/sections/ProblemSection';
 import ArchitectureSection from '@/components/sections/ArchitectureSection';
 import CustomerJourneySection from '@/components/sections/CustomerJourneySection';
-import WhyPartnerSection from '@/components/sections/WhyPartnerSection';
 import InteractiveMotionShowcase from '@/components/sections/InteractiveMotionShowcase';
-import AiRouterChat from '@/components/sections/AiRouterChat';
+import BrandGrowthStoryDemo from '@/components/sections/BrandGrowthStoryDemo';
 import TrustFaqSection from '@/components/sections/TrustFaqSection';
-import VisionGallery from '@/components/sections/VisionGallery';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import TrustSlaSection from '@/components/sections/TrustSlaSection';
-import LeadMagnetSection from '@/components/sections/LeadMagnetSection';
 import GrowthBundlesSection from '@/components/sections/GrowthBundlesSection';
-import Link from 'next/link';
-import { blogPosts } from '@/data/blogs';
+import LeadMagnetSection from '@/components/sections/LeadMagnetSection';
+import VisionGallery from '@/components/sections/VisionGallery';
+import InsightsSection from '@/components/sections/InsightsSection';
+import AiRouterChat from '@/components/sections/AiRouterChat';
+import GrowthArchitectureSection from '@/components/sections/GrowthArchitectureSection';
+
+export const metadata = {
+  title: 'Nexus Lift | Business Infrastructure & Growth Systems in Bangladesh',
+  description: 'Research-backed Business Infrastructure, Operating Systems, SOPs and AI Automation for Bangladeshi SMEs, F-Commerce brands and Founders.',
+};
 
 export default function Home() {
   return (
-    <>
-      {/* Announcement Bar */}
-      <div className="bg-[#0B1733] text-[#dce7f7] text-[13px] py-[9px] border-b border-white/10">
-        <div className="max-w-[1160px] mx-auto px-4 md:px-0 flex justify-between items-center gap-3">
-          <span>Business Infrastructure & Systems Platform — ঢাকা, বাংলাদেশ</span>
-          <span>
-            SLA: ৪৮–৭২ ঘণ্টার মধ্যে ডিজিটাল ডেলিভারি ·{' '}
+    <div className="min-h-screen bg-white text-[#101828]">
+      {/* ─── JSON-LD STRUCTURED SCHEMA MARKUP FOR SEO & AI SEARCH ─── */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Organization",
+                "@id": "https://nexuslift.xyz/#organization",
+                "name": "Nexus Lift",
+                "url": "https://nexuslift.xyz",
+                "logo": "https://nexuslift.xyz/logo.png",
+                "description": "Connecting Sources, Lifting Business — AI-Powered Business Infrastructure, Operating Systems & Automation Platform for SMEs & Startups in Bangladesh.",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Dhaka",
+                  "addressCountry": "BD"
+                },
+                "contactPoint": {
+                  "@type": "ContactPoint",
+                  "telephone": "+8801814716713",
+                  "contactType": "customer service",
+                  "availableLanguage": ["Bangla", "English"]
+                }
+              },
+              {
+                "@type": "WebSite",
+                "@id": "https://nexuslift.xyz/#website",
+                "url": "https://nexuslift.xyz",
+                "name": "Nexus Lift — Business Growth Infrastructure",
+                "publisher": {
+                  "@id": "https://nexuslift.xyz/#organization"
+                }
+              },
+              {
+                "@type": "FAQPage",
+                "@id": "https://nexuslift.xyz/#faq",
+                "mainEntity": [
+                  {
+                    "@type": "Question",
+                    "name": "ডেলিভারি কত সময়ে সম্পন্ন হয়?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "অর্ডার কনফার্মেশনের পর আমাদের টিম ৪৮ থেকে ৭২ ঘণ্টার মধ্যে আপনার কাস্টমাইজড বিজনেস সিস্টেম ও ডকুমেন্টস ডিজিটাল ডেলিভারি সম্পন্ন করে।"
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "কী কী ফরম্যাটে ফাইলগুলো পাব?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "আপনি এডিটেবল Word/Docs ফাইল, রেডি-টু-প্রিন্ট হাই-রেজোলিউশন PDF এবং স্বয়ংক্রিয় এক্সেল/গুগল শিট ক্যালকুলেটর ফরম্যাটে সমস্ত সিস্টেম ও ডকুমেন্টস পাবেন।"
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "পেমেন্ট মেথড কী এবং রিভিশন পলিসি কেমন?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "আমরা ভেরিফাইড বিকাশ মার্চেন্ট ও ব্যাংক ট্রান্সফার গ্রহণ করি। ডেলিভারির পর আপনার সন্তুষ্টি নিশ্চিত করতে আনলিমিটেড রিভিশন ও ৭ দিনের ট্রাস্ট সাপোর্ট সুবিধা রয়েছে।"
+                    }
+                  }
+                ]
+              }
+            ]
+          })
+        }}
+      />
+
+      {/* ─── ANNOUNCEMENT BAR ─── */}
+      <div className="bg-[#0B1733] text-[#dce7f7] text-[11px] sm:text-[13px] py-2 sm:py-[9px] border-b border-white/10">
+        <div className="max-w-[1160px] mx-auto px-4 md:px-0 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-1 sm:gap-3">
+          <span className="truncate max-w-full">Business Infrastructure & Systems Platform — ঢাকা, বাংলাদেশ</span>
+          <span className="shrink-0">
+            SLA: ৪৮–৭২ ঘণ্টা ·{' '}
             <a href="https://wa.me/8801814716713" className="text-[#43A7E8] font-bold hover:underline">
               WhatsApp: 01814-716713
             </a>
@@ -32,196 +110,217 @@ export default function Home() {
         </div>
       </div>
 
+      {/* ─── NAVBAR ─── */}
       <Navbar />
 
       <main className="flex-1">
-        {/* ─── 1. HERO ─── */}
-        <header className="hero-radial py-12 md:py-20 overflow-hidden">
-          <div className="max-w-[1160px] mx-auto px-4 md:px-0 grid md:grid-cols-[1.08fr_0.92fr] gap-12 items-center">
+
+        {/* ══════════════════════════════════════════
+            1. HERO — First Impression & Clear Value
+        ══════════════════════════════════════════ */}
+        <header className="hero-radial py-8 sm:py-12 md:py-20 overflow-hidden">
+          <div className="max-w-[1160px] mx-auto px-4 md:px-0 grid md:grid-cols-[1.08fr_0.92fr] gap-8 md:gap-12 items-center">
             <div>
-              <span className="inline-flex items-center gap-1.5 bg-[#EAF6FF] text-[#125883] px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider mb-3">
+              <span className="inline-flex items-center gap-1.5 bg-[#DBEAFE] text-[#1E40AF] px-3 py-1.5 rounded-full text-[11px] sm:text-xs font-black uppercase tracking-wider mb-3">
                 Connecting Sources, Lifting Business.
               </span>
-              <h1 className="sr-only">Nexus Lift: Business Growth Infrastructure, AI Automation & F-Commerce Systems in Bangladesh</h1>
-              <div aria-hidden="true" className="text-4xl md:text-[64px] leading-[1.06] tracking-tight text-[#0B1733] font-black my-4">
-                আপনার Business আছে।<br />
-                <span className="text-[#1971a5]">কিন্তু Business System আছে কি?</span>
-              </div>
-              <p className="text-[17px] text-[#667085] max-w-[620px] leading-relaxed">
-                Business Chaos থেকে Systematic Growth — Nexus Lift আপনার প্রয়োজন অনুযায়ী
-                Research-backed Brand, Structure, Operations, Growth, AI এবং Management System তৈরি করে।
+
+              <h1 className="text-[26px] xs:text-[30px] sm:text-4xl md:text-[54px] lg:text-[60px] leading-[1.2] sm:leading-[1.12] md:leading-[1.08] tracking-tight text-[#0B1733] font-black my-4 break-words">
+                আপনার Business আছে।<br className="hidden sm:inline" />{' '}
+                <span className="text-[#1971a5]">
+                  কিন্তু Business System আছে কি?
+                </span>
+              </h1>
+
+              <p className="text-[14px] sm:text-[16px] md:text-[17px] text-[#374151] max-w-[620px] leading-relaxed">
+                Business Chaos থেকে Systematic Growth — Nexus Lift আপনার প্রয়োজন অনুযায়ী Research-backed Brand, Structure, Operations, Growth, AI এবং Management System তৈরি করে।
               </p>
 
-              <div className="flex flex-wrap gap-3 my-7">
-                <a href="#diagnose" className="bg-[#0B1733] text-white px-6 py-3.5 rounded-xl font-extrabold text-sm hover:-translate-y-[1px] hover:shadow-xl transition-all">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-2.5 sm:gap-3 my-6 sm:my-7">
+                <a href="#diagnose" className="w-full sm:w-auto text-center bg-[#0B1733] text-white px-5 sm:px-6 py-3.5 rounded-xl font-extrabold text-sm hover:-translate-y-[1px] hover:shadow-[0_10px_25px_rgba(11,23,51,0.22)] transition-all">
                   আমার Business Diagnose করুন →
                 </a>
-                <a href="#products" className="px-6 py-3.5 border border-[#D0D5DD] rounded-xl font-extrabold text-sm text-[#0B1733] hover:bg-[#F7FAFC] transition-all">
-                  Explore Products
-                </a>
-                <a href="#bundles" className="px-6 py-3.5 bg-[#EAF6FF] text-[#1971A5] rounded-xl font-extrabold text-sm hover:bg-[#d5edff] transition-all">
-                  🔥 Value Bundles
-                </a>
+                <div className="grid grid-cols-2 sm:flex gap-2 sm:gap-3 w-full sm:w-auto">
+                  <a href="#products" className="text-center px-4 sm:px-6 py-3.5 border-2 border-[#64748B] rounded-xl font-extrabold text-xs sm:text-sm text-[#0B1733] hover:bg-[#F0F4F8] transition-all">
+                    Explore Products
+                  </a>
+                  <a href="#bundles" className="text-center px-4 sm:px-6 py-3.5 bg-[#EAF6FF] text-[#0B5A96] rounded-xl font-extrabold text-xs sm:text-sm hover:bg-[#BFDBFE] transition-all">
+                    🔥 Value Bundles
+                  </a>
+                </div>
               </div>
 
-              <div className="flex items-center gap-2 text-[13px] text-[#667085]">
-                <span className="font-semibold text-emerald-600">✓ 48–72h SLA</span>
-                <span className="w-1 h-1 bg-gray-300 rounded-full mx-1" />
+              <div className="flex flex-wrap items-center gap-2 text-[12px] sm:text-[13px] text-[#374151]">
+                <span className="font-bold text-emerald-700">✓ 48–72h SLA</span>
+                <span className="w-1 h-1 bg-[#94A3B8] rounded-full" />
                 <span>Print PDF + Word</span>
-                <span className="w-1 h-1 bg-gray-300 rounded-full mx-1" />
+                <span className="w-1 h-1 bg-[#94A3B8] rounded-full" />
                 <span>Verified bKash</span>
               </div>
             </div>
 
-            {/* Business System Health Card */}
-            <div className="bg-gradient-to-br from-[#0B1733] to-[#152E5C] text-white p-7 rounded-[28px] shadow-2xl border border-white/10 card-shine">
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <div className="bg-white/10 px-3 py-1.5 rounded-full text-[11px] text-[#cfe8ff] font-bold tracking-wider inline-block">
-                    NEXUS BUSINESS SYSTEM HEALTH
-                  </div>
-                  <div className="mt-2 font-extrabold text-base">Your business snapshot</div>
-                </div>
-                <div className="text-[42px] font-black tracking-tight leading-none text-white">
-                  78<span className="text-sm text-[#9fb3cc] font-semibold">/100</span>
-                </div>
-              </div>
-              <div className="h-2 bg-white/10 rounded-full overflow-hidden mb-5">
-                <div className="h-full w-[78%] bg-[#43A7E8] rounded-full" />
-              </div>
-              <div className="grid grid-cols-2 gap-2.5">
-                {[
-                  { n: '01 Identity', s: 'Brand & Profile' },
-                  { n: '02 Structure', s: 'Roles & Organogram' },
-                  { n: '03 Operations', s: 'SOP & Workflow' },
-                  { n: '04 Growth', s: 'Sales & Conversion' },
-                ].map((item) => (
-                  <div key={item.n} className="p-3 border border-white/10 rounded-xl bg-white/5">
-                    <b className="block text-xs text-white mb-0.5">{item.n}</b>
-                    <span className="text-[11px] text-[#aebfd5]">{item.s}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <HeroSystemHealthCard />
           </div>
         </header>
 
-        {/* ─── 2. PRIORITY HIT CAROUSEL ─── */}
-        <HomeProductCarousel />
-
-        {/* ─── 3. PROBLEM / PAIN-FIRST COPY ─── */}
-        <div id="solutions">
+        {/* ══════════════════════════════════════════
+            2. PROBLEM RECOGNITION (Pain First)
+        ══════════════════════════════════════════ */}
+        <div id="solutions" className="bg-white">
           <ProblemSection />
         </div>
 
-        {/* ─── 4. SOCIAL PROOF & TESTIMONIALS ─── */}
-        <TestimonialsSection />
+        {/* ══════════════════════════════════════════
+            GROWTH ARCHITECTURE ROADMAP
+        ══════════════════════════════════════════ */}
+        <GrowthArchitectureSection />
 
-        {/* ─── 5. 360° ARCHITECTURE ─── */}
+        {/* ══════════════════════════════════════════
+            3. FESTIVE TRIO CAROUSEL
+        ══════════════════════════════════════════ */}
+        <HomeProductCarousel />
+
+        {/* ══════════════════════════════════════════
+            4. 360° ARCHITECTURE
+        ══════════════════════════════════════════ */}
         <ArchitectureSection />
 
-        {/* ─── 6. STRATEGIC GROWTH BUNDLES ─── */}
-        <GrowthBundlesSection />
+        {/* ══════════════════════════════════════════
+            5. TESTIMONIALS & FOUNDER SOCIAL PROOF
+        ══════════════════════════════════════════ */}
+        <TestimonialsSection />
 
-        {/* ─── 7. 3 PRIORITIES INTERACTIVE MOTION ─── */}
-        <InteractiveMotionShowcase />
+        {/* ══════════════════════════════════════════
+            6. VALUE GROWTH BUNDLES
+        ══════════════════════════════════════════ */}
+        <div id="bundles">
+          <GrowthBundlesSection />
+        </div>
 
-        {/* ─── 8. CUSTOMER JOURNEY ─── */}
-        <CustomerJourneySection />
-
-        {/* ─── 9. 6 GROWTH GATEWAYS (Full Product Grid) ─── */}
+        {/* ══════════════════════════════════════════
+            7. 6 GROWTH GATEWAYS (Full Product Catalog)
+        ══════════════════════════════════════════ */}
         <div id="products">
           <ProductGrid />
         </div>
 
-        {/* ─── 10. TRUST & SLA VAULT STANDARD ─── */}
+        {/* ══════════════════════════════════════════
+            8. CUSTOMER JOURNEY + TRUST SLA
+        ══════════════════════════════════════════ */}
+        <CustomerJourneySection />
         <TrustSlaSection />
 
-        {/* ─── 11. FREE LEAD MAGNET CHECKLIST ─── */}
+        {/* ══════════════════════════════════════════
+            8.5 BRAND STORY & 4-STAGE INTERACTIVE DEMO
+        ══════════════════════════════════════════ */}
+        <BrandGrowthStoryDemo />
+
+        {/* ══════════════════════════════════════════
+            9. 3 PRIORITIES INTERACTIVE MOTION SHOWCASE
+        ══════════════════════════════════════════ */}
+        <InteractiveMotionShowcase />
+
+        {/* ══════════════════════════════════════════
+            10. LEAD MAGNET CHECKLIST
+        ══════════════════════════════════════════ */}
         <LeadMagnetSection />
 
-        {/* ─── 12. VISION GALLERY ─── */}
+        {/* ══════════════════════════════════════════
+            11. VISION GALLERY
+        ══════════════════════════════════════════ */}
         <VisionGallery />
 
-        {/* ─── 13. LATEST INSIGHTS / BLOG PREVIEW ─── */}
-        <section className="py-16 bg-[#F8FAFC] border-t border-[#E2E8F0]">
-          <div className="max-w-[1160px] mx-auto px-4 md:px-0">
-            <div className="flex items-end justify-between mb-8">
-              <div>
-                <div className="text-[#1971A5] font-black text-xs uppercase tracking-widest mb-1">
-                  Knowledge Vault
-                </div>
-                <h2 className="text-2xl md:text-3xl font-black text-[#0B1733]">
-                  Business Growth Insights & Case Studies
-                </h2>
-              </div>
-              <Link href="/blog" className="text-sm font-bold text-[#1971A5] hover:underline">
-                All Insights →
-              </Link>
-            </div>
-            <div className="grid md:grid-cols-3 gap-6">
-              {blogPosts.map((post) => (
-                <Link
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  className="group bg-white p-6 rounded-2xl border border-[#E2E8F0] hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col"
-                >
-                  <span className="text-[10px] font-black uppercase text-[#1971A5] bg-[#EAF6FF] px-2 py-1 rounded self-start mb-3">
-                    {post.category}
-                  </span>
-                  <h3 className="font-extrabold text-[#0B1733] text-sm mb-2 leading-snug group-hover:text-[#1971A5] transition-colors">
-                    {post.banglaTitle}
-                  </h3>
-                  <p className="text-xs text-[#64748B] leading-relaxed flex-1">{post.excerpt}</p>
-                  <div className="mt-4 text-xs font-black text-[#1971A5]">Read Strategy &rarr;</div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* ══════════════════════════════════════════
+            11.5 BUSINESS GROWTH INSIGHTS & CASE STUDIES
+        ══════════════════════════════════════════ */}
+        <InsightsSection />
 
-        {/* ─── 14. WHY PARTNER ─── */}
-        <WhyPartnerSection />
-
-        {/* ─── 15. TRUST / FAQ ─── */}
+        {/* ══════════════════════════════════════════
+            12. TRUST FAQ & OBJECTION HANDLER
+        ══════════════════════════════════════════ */}
         <TrustFaqSection />
 
-        {/* ─── 16. AI DIAGNOSE (24/7 Virtual Strategist) ─── */}
+        {/* ══════════════════════════════════════════
+            13. AI ROUTER CHAT (24/7 Virtual Strategist)
+        ══════════════════════════════════════════ */}
         <div id="diagnose">
           <AiRouterChat />
         </div>
+
       </main>
 
       {/* ─── FOOTER ─── */}
-      <footer className="bg-[#071127] text-[#aebbd0] py-12 text-sm border-t border-white/10">
+      <footer className="bg-[#071127] text-[#CBD5E1] py-12 text-sm border-t border-white/10">
         <div className="max-w-[1160px] mx-auto px-4 md:px-0 flex flex-col md:flex-row justify-between items-start gap-8">
           <div>
             <span className="text-lg font-black text-white tracking-wider block mb-1">NEXUS LIFT</span>
-            <p className="text-xs text-[#64748b] max-w-[280px] leading-relaxed">
+            <p className="text-xs text-[#CBD5E1] max-w-[280px] leading-relaxed">
               AI-Powered Business Growth Infrastructure Platform — ঢাকা, বাংলাদেশ
             </p>
           </div>
-
-          <div className="grid grid-cols-2 gap-x-12 gap-y-3 text-xs text-gray-400">
+          <div className="grid grid-cols-2 gap-x-12 gap-y-3 text-xs text-[#CBD5E1]">
             <div className="space-y-2">
               <div className="text-white font-bold mb-1">Platform</div>
-              <Link href="#products" className="block hover:text-white transition">Products</Link>
-              <Link href="#bundles" className="block hover:text-white transition">Bundles</Link>
-              <Link href="#solutions" className="block hover:text-white transition">Solutions</Link>
-              <Link href="/blog" className="block hover:text-white transition">Insights</Link>
+              <a href="#products" className="block hover:text-white transition">Products</a>
+              <a href="#bundles" className="block hover:text-white transition">Bundles</a>
+              <a href="#solutions" className="block hover:text-white transition">Solutions</a>
+              <Link href="/insights" className="block hover:text-white transition">Insights & Case Studies</Link>
+              <Link href="/free-tools" className="block hover:text-white transition">Free Tools</Link>
             </div>
             <div className="space-y-2">
               <div className="text-white font-bold mb-1">Company</div>
               <Link href="/about-us" className="block hover:text-white transition">About Us</Link>
-              <Link href="/dashboard" className="block hover:text-white transition">CEO Console</Link>
               <a href="https://wa.me/8801814716713" className="block hover:text-white transition">WhatsApp</a>
+              <a href="#diagnose" className="block hover:text-white transition">AI Diagnose</a>
+
+              <div className="pt-3">
+                <div className="text-white font-bold mb-2">Follow Us</div>
+                <div className="flex items-center gap-3">
+                  {/* Facebook */}
+                  <a
+                    href="https://www.facebook.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Facebook"
+                    className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/5 border border-white/10 hover:border-[#43A7E8]/50 hover:bg-white/10 transition"
+                  >
+                    <span className="text-[#43A7E8] font-black text-[14px]">f</span>
+                  </a>
+
+                  {/* Instagram */}
+                  <a
+                    href="https://www.instagram.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Instagram"
+                    className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/5 border border-white/10 hover:border-[#43A7E8]/50 hover:bg-white/10 transition"
+                  >
+                    <span className="text-[#43A7E8] font-black text-[14px]">⌁</span>
+                  </a>
+
+                  {/* LinkedIn */}
+                  <a
+                    href="https://www.linkedin.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="LinkedIn"
+                    className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/5 border border-white/10 hover:border-[#43A7E8]/50 hover:bg-white/10 transition"
+                  >
+                    <span className="text-[#43A7E8] font-black text-[14px]">in</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div className="max-w-[1160px] mx-auto px-4 md:px-0 border-t border-white/10 mt-8 pt-6 text-xs text-[#475467]">
-          © 2026 Nexus Lift. All rights reserved. · Connecting Sources, Lifting Business.
+        <div className="max-w-[1160px] mx-auto px-4 md:px-0 border-t border-white/10 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#94A3B8]">
+          <span>© 2026 Nexus Lift. All rights reserved. · Connecting Sources, Lifting Business.</span>
+          <div className="flex items-center gap-4">
+            <Link href="/terms" className="hover:text-white transition">Terms of Service</Link>
+            <Link href="/privacy" className="hover:text-white transition">Privacy Policy</Link>
+          </div>
         </div>
       </footer>
-    </>
+    </div>
   );
 }

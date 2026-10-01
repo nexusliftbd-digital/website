@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgFin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#071127"/>
+      <stop offset="100%" stop-color="#0B1733"/>
+    </linearGradient>
+    <linearGradient id="finGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E11D48"/>
+      <stop offset="100%" stop-color="#BE123C"/>
+    </linearGradient>
+    <filter id="shadowFin" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <rect width="400" height="300" rx="16" fill="url(#bgFin)"/>
+
+  <g filter="url(#shadowFin)" transform="translate(30, 25)">
+    <rect x="0" y="0" width="340" height="230" rx="12" fill="#0F172A" stroke="#1E293B" stroke-width="1.5"/>
+
+    <!-- Header -->
+    <rect x="0" y="0" width="340" height="42" rx="12" fill="url(#finGrad)"/>
+    <rect x="0" y="24" width="340" height="18" fill="url(#finGrad)"/>
+    <text x="20" y="26" font-family="Inter, sans-serif" font-weight="900" font-size="12" fill="#FFFFFF">UNIT ECONOMICS &amp; PROFIT AUDIT</text>
+
+    <!-- Top KPI Cards -->
+    <rect x="18" y="56" width="96" height="46" rx="6" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <text x="26" y="70" font-family="Inter, sans-serif" font-size="7" fill="#94A3B8">Net Profit Margin</text>
+    <text x="26" y="92" font-family="Inter, sans-serif" font-size="14" font-weight="900" fill="#10B981">+28.4%</text>
+
+    <rect x="122" y="56" width="96" height="46" rx="6" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <text x="130" y="70" font-family="Inter, sans-serif" font-size="7" fill="#94A3B8">Ad Waste Cut</text>
+    <text x="130" y="92" font-family="Inter, sans-serif" font-size="14" font-weight="900" fill="#38BDF8">-35.0%</text>
+
+    <rect x="226" y="56" width="96" height="46" rx="6" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <text x="234" y="70" font-family="Inter, sans-serif" font-size="7" fill="#94A3B8">Cash Runway</text>
+    <text x="234" y="92" font-family="Inter, sans-serif" font-size="14" font-weight="900" fill="#F59E0B">9.5 Months</text>
+
+    <!-- Financial Breakdown Graph -->
+    <rect x="18" y="112" width="304" height="102" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <text x="28" y="130" font-family="Inter, sans-serif" font-size="8" font-weight="900" fill="#E2E8F0">COGS, MARKETING &amp; NET SURPLUS AUDIT</text>
+
+    <!-- Bar Chart Visuals -->
+    <rect x="28" y="146" width="35" height="50" rx="3" fill="#334155"/>
+    <text x="34" y="140" font-family="Inter, sans-serif" font-size="7" fill="#94A3B8">COGS</text>
+
+    <rect x="75" y="156" width="35" height="40" rx="3" fill="#E11D48"/>
+    <text x="80" y="150" font-family="Inter, sans-serif" font-size="7" fill="#FDA4AF">Ad Spend</text>
+
+    <rect x="122" y="166" width="35" height="30" rx="3" fill="#F59E0B"/>
+    <text x="125" y="160" font-family="Inter, sans-serif" font-size="7" fill="#FDE68A">Courier</text>
+
+    <rect x="169" y="132" width="45" height="64" rx="3" fill="#10B981"/>
+    <text x="172" y="126" font-family="Inter, sans-serif" font-size="7.5" font-weight="900" fill="#A7F3D0">NET CASH</text>
+
+    <!-- Summary Statement Box -->
+    <rect x="224" y="140" width="88" height="56" rx="4" fill="#0B132B"/>
+    <text x="230" y="154" font-family="Inter, sans-serif" font-size="7" fill="#94A3B8">Status:</text>
+    <text x="230" y="168" font-family="Inter, sans-serif" font-size="8" font-weight="900" fill="#10B981">Audit Verified</text>
+    <text x="230" y="182" font-family="Inter, sans-serif" font-size="6.5" fill="#38BDF8">Zero Leaks Found</text>
+  </g>
+</svg>

@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { products, ProductDef, ProductCategory } from '@/data/products';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface GateDef {
   cat: ProductCategory;
@@ -76,8 +77,24 @@ export default function ProductGrid() {
   const [activeTab, setActiveTab] = useState<ProductCategory | 'all'>('all');
   const [selectedProduct, setSelectedProduct] = useState<ProductDef | null>(null);
 
+  const [timeLeft, setTimeLeft] = useState(3600 * 3 + 1400); // ~3h 23m initial
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prev => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatTime = (seconds: number) => {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = seconds % 60;
+    return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+  };
+
   const filteredProducts = products.filter(
-    (p) => activeTab === 'all' || p.cat === activeTab
+    (p) => (activeTab === 'all' || p.cat === activeTab) && p.status !== 'turned_off'
   );
 
   return (
@@ -155,7 +172,9 @@ export default function ProductGrid() {
 
                   {/* Grid */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {gateProducts.map((p) => (
+                    {gateProducts
+                      .filter((p) => p.status !== 'turned_off')
+                      .map((p) => (
                       <ProductCard key={p.id} p={p} onSelect={() => setSelectedProduct(p)} />
                     ))}
                   </div>
@@ -234,12 +253,49 @@ export default function ProductGrid() {
 
               <div className="flex items-baseline justify-between mb-4">
                 <span className="text-2xl font-black text-[#1971A5]">{selectedProduct.price}</span>
-                <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">
-                  ⚡ 48–72h Digital Vault SLA
-                </span>
+                {selectedProduct.popular ? (
+                  <span className="flex items-center gap-1.5 text-[10px] font-black text-rose-600 bg-rose-50 px-3 py-1.5 rounded-lg border border-rose-200 animate-pulse">
+                     ⏳ Flash Deal: {formatTime(timeLeft)} left!
+                  </span>
+                ) : (
+                  <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">
+                    ⚡ 48–72h Digital Vault SLA
+                  </span>
+                )}
               </div>
 
+              {selectedProduct.popular && (
+                <div className="mb-5 bg-gradient-to-r from-[#EAF6FF]/80 to-[#F0FDF4]/80 border-dashed border-2 border-[#1971A5]/30 rounded-2xl p-4 flex flex-col gap-2.5 shadow-sm">
+                   <div className="flex items-center justify-between">
+                     <span className="text-[10px] font-black uppercase text-[#1971A5] bg-white px-2 py-0.5 rounded-md border border-[#1971A5]/20">🔥 Hot Bundle Opportunity</span>
+                     <span className="text-[10px] font-bold text-emerald-600">Save 80%</span>
+                   </div>
+                   <div className="text-xs font-bold text-[#0B1733] leading-snug">
+                     এই সিস্টেমের সাথে আমাদের <span className="text-[#1971A5] font-black">Nexus Vault Pro Access</span> (লাইফটাইম ক্লাউড ড্রাইভ ও টেমপ্লেট ভল্ট) অ্যাড করুন মাত্র <span className="text-emerald-600 font-black">৳৪৯৯</span>-এ!
+                   </div>
+                   <a
+                     href={`https://wa.me/8801814716713?text=${encodeURIComponent(
+                       `সালাম, আমি "${selectedProduct.title}" এর সাথে ৳৪৯৯ এর Nexus Vault Pro Bundle অফারটি সহ স্পেশাল প্যাকেজে অর্ডার করতে চাই।`
+                     )}`}
+                     target="_blank"
+                     rel="noreferrer"
+                     className="text-[11px] font-black bg-[#0B1733] text-white py-2.5 rounded-xl w-full text-center hover:bg-[#1971A5] transition flex items-center justify-center gap-1.5 shadow"
+                   >
+                     🚀 Claim Bundle Deal (৳{selectedProduct.price.replace('৳', '')} + ৳৪৯৯)
+                   </a>
+                </div>
+              )}
+
               <p className="text-sm text-[#475467] leading-relaxed mb-4">{selectedProduct.desc}</p>
+
+              {selectedProduct.painPoint && (
+                <div className="mb-5 bg-rose-50 border border-rose-200 p-4 rounded-xl">
+                  <div className="text-xs font-black text-rose-700 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                    <span>🎯</span> কাস্টমার পেইন পয়েন্ট (The Problem We Solve)
+                  </div>
+                  <p className="text-xs text-rose-900 font-bold leading-relaxed">{selectedProduct.painPoint}</p>
+                </div>
+              )}
 
               <div className="mb-4">
                 <strong className="text-xs text-[#0B1733] uppercase tracking-wider block mb-2 font-black">
@@ -254,27 +310,62 @@ export default function ProductGrid() {
                 </ul>
               </div>
 
+              {selectedProduct.faqs && selectedProduct.faqs.length > 0 && (
+                <div className="mb-5 mt-5">
+                  <strong className="text-xs text-[#0B1733] uppercase tracking-wider block mb-3 font-black flex items-center gap-1.5">
+                    <span>💡</span> সচরাচর জিজ্ঞাসিত প্রশ্ন (FAQ)
+                  </strong>
+                  <div className="space-y-2">
+                    {selectedProduct.faqs.map((faq, i) => (
+                      <div key={i} className="bg-[#F8FAFC] border border-[#E2E8F0] p-3 rounded-xl">
+                        <div className="text-[11px] font-black text-[#0B1733] mb-1">Q: {faq.q}</div>
+                        <div className="text-[11px] text-[#475467] leading-snug">A: {faq.a}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div className="bg-[#EAF6FF] border border-[#BAE6FD] rounded-xl p-3 text-xs text-[#0369A1] mb-5">
                 <strong>🛡️ Nexus Lift Guarantee:</strong> ১০০% রেডি মাস্টার ফাইল + এডিটেবল ফরম্যাট (.docx / Google Docs / Sheets) + ফ্রি রিভিশন সাপোর্ট।
               </div>
 
               <div className="grid grid-cols-2 gap-2.5">
-                <a
-                  href={`https://wa.me/8801814716713?text=${encodeURIComponent(
-                    `সালাম, আমি Nexus Lift-এর "${selectedProduct.title}" (${selectedProduct.price}) প্যাকেজটি কনফার্ম করতে চাই। পরবর্তী প্রসেস জানিয়ে দিন।`
-                  )}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="py-3.5 bg-[#25D366] text-white text-xs font-black rounded-xl text-center hover:bg-[#1eb956] transition shadow-md"
-                >
-                  💬 1-Click WhatsApp Order
-                </a>
-                <button
-                  onClick={() => setSelectedProduct(null)}
-                  className="py-3.5 bg-[#0B1733] text-white text-xs font-bold rounded-xl hover:bg-black transition"
-                >
-                  Close Specification
-                </button>
+                {selectedProduct.status === 'out_of_stock' ? (
+                  <button
+                    disabled
+                    className="py-3.5 bg-gray-300 text-gray-500 cursor-not-allowed text-xs font-black rounded-xl text-center shadow-none col-span-2"
+                  >
+                    🚫 স্টক আউট (Sold Out) - Currently Unavailable
+                  </button>
+                ) : (
+                  <a
+                    href={`https://wa.me/8801814716713?text=${encodeURIComponent(
+                      `সালাম, আমি Nexus Lift-এর "${selectedProduct.title}" (${selectedProduct.price}) প্যাকেজটি কনফার্ম করতে চাই। পরবর্তী প্রসেস জানিয়ে দিন।`
+                    )}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="py-3.5 bg-[#25D366] text-white text-xs font-black rounded-xl text-center hover:bg-[#1eb956] transition shadow-md"
+                  >
+                    💬 1-Click WhatsApp Order
+                  </a>
+                )}
+                {selectedProduct.status !== 'out_of_stock' && (
+                  <Link
+                    href={`/products/${selectedProduct.id}`}
+                    className="py-3.5 bg-[#0B1733] text-white text-xs font-bold rounded-xl hover:bg-[#1971A5] transition text-center flex items-center justify-center"
+                  >
+                    🔗 Full Dedicated Page
+                  </Link>
+                )}
+                {selectedProduct.status === 'out_of_stock' && (
+                  <button
+                    onClick={() => setSelectedProduct(null)}
+                    className="mt-2 text-[#0B1733] text-xs font-bold hover:underline col-span-2"
+                  >
+                    Close
+                  </button>
+                )}
               </div>
             </motion.div>
           </div>
@@ -297,47 +388,74 @@ function ProductCard({ p, onSelect }: { p: ProductDef; onSelect: () => void }) {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.25 }}
-      className="border border-[#E2E8F0] rounded-2xl overflow-hidden bg-white flex flex-col shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
+      className="border-2 border-[#CBD5E1] rounded-2xl overflow-hidden bg-white flex flex-col shadow-sm hover:shadow-2xl hover:border-[#1971A5] hover:-translate-y-1.5 transition-all duration-300 group"
     >
-      {/* Visual */}
-      <div className="bg-[radial-gradient(circle_at_50%_30%,#FFFFFF_0%,#EDF2F7_100%)] border-b border-[#E2E8F0] relative h-[170px] flex items-center justify-center p-4">
-        <span className="absolute top-3 left-3 bg-[#0B1733] text-white text-[10px] font-black px-2.5 py-1 rounded-full tracking-wider">
-          {p.badge}
-        </span>
-        <div className="relative w-full h-full max-w-[180px]">
-          <Image src={p.img} alt={p.title} fill className="object-contain group-hover:scale-105 transition-transform duration-300" />
+      {/* Visual Header with High-Contrast Bold Title Overlay */}
+      <div className="bg-[radial-gradient(circle_at_50%_30%,#FFFFFF_0%,#EDF2F7_100%)] border-b border-[#CBD5E1] relative h-[190px] flex flex-col justify-between p-3.5">
+        <div className="flex items-center justify-between gap-2 z-10">
+          <span className="bg-[#0B1733] text-[#E0F2FE] text-[11px] font-black px-3 py-1 rounded-lg tracking-wider shadow-sm border border-white/20">
+            {p.badge}
+          </span>
+          <span className="bg-emerald-50 text-emerald-800 text-[10px] font-black px-2 py-0.5 rounded border border-emerald-300 shadow-sm">
+            ⚡ 48-72h SLA
+          </span>
+        </div>
+
+        <div className="relative w-full h-[105px] max-w-[200px] mx-auto">
+          <Image src={p.img} alt={p.title} fill className="object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-md" />
+        </div>
+
+        {/* Clear Blueprint Header Tag */}
+        <div className="bg-[#0B1733]/90 backdrop-blur-sm px-2.5 py-1 rounded-md text-[11px] font-black text-white text-center truncate tracking-wide border border-white/10 z-10">
+          📐 {p.title}
         </div>
       </div>
 
-      {/* Body */}
-      <div className="p-5 flex flex-col flex-1 gap-1.5">
-        <h3 className="text-base font-black text-[#0B1733] leading-snug">{p.title}</h3>
+      {/* Body with Crisp High-Contrast Typography */}
+      <div className="p-5 flex flex-col flex-1 gap-2 bg-white">
+        <h3 className="text-[17px] font-black text-[#0B1733] leading-snug group-hover:text-[#1971A5] transition-colors">
+          {p.title}
+        </h3>
+
         {p.tagline && (
-          <p className="text-[11px] font-bold text-[#1971A5]">{p.tagline}</p>
+          <p className="text-xs font-bold text-[#1971A5] leading-snug">
+            {p.tagline}
+          </p>
         )}
-        <div className="flex items-baseline justify-between my-1">
-          <span className="text-lg font-black text-[#1971A5]">{p.price}</span>
-          <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-            Vault SLA
+
+        <div className="flex items-baseline justify-between py-1 my-0.5 border-y border-[#F1F5F9]">
+          <span className="text-xl font-black text-[#1971A5] tracking-tight">{p.price}</span>
+          <span className="text-[11px] font-bold text-[#374151]">
+            Editable Doc + PDF
           </span>
         </div>
-        <p className="text-xs text-[#667085] leading-relaxed flex-1">{p.desc}</p>
 
-        <div className="grid grid-cols-2 gap-2 mt-4 pt-2 border-t border-[#F1F5F9]">
+        <p className="text-[13px] text-[#374151] font-medium leading-relaxed flex-1">{p.desc}</p>
+
+        <div className="grid grid-cols-2 gap-2 mt-3 pt-2 border-t border-[#F1F5F9]">
           <button
             onClick={onSelect}
-            className="w-full py-2 bg-white border border-[#CBD5E1] text-[#0B1733] text-xs font-extrabold rounded-lg hover:bg-gray-50 transition"
+            className="w-full py-2.5 bg-[#F8FAFC] border border-[#94A3B8] text-[#0B1733] text-xs font-extrabold rounded-xl hover:bg-[#E2E8F0] transition shadow-sm"
           >
-            Details
+            📋 Details & Specs
           </button>
-          <a
-            href={`https://wa.me/8801814716713?text=${waText}`}
-            target="_blank"
-            rel="noreferrer"
-            className="w-full py-2 bg-[#25D366] text-white text-xs font-extrabold rounded-lg text-center hover:bg-[#1eb956] transition shadow-sm"
-          >
-            Order Now
-          </a>
+          {p.status === 'out_of_stock' ? (
+            <button
+              disabled
+              className="w-full py-2.5 bg-gray-200 text-gray-500 cursor-not-allowed text-xs font-extrabold rounded-xl text-center"
+            >
+              🚫 Sold Out
+            </button>
+          ) : (
+            <a
+              href={`https://wa.me/8801814716713?text=${waText}`}
+              target="_blank"
+              rel="noreferrer"
+              className="w-full py-2.5 bg-[#25D366] text-white text-xs font-black rounded-xl text-center hover:bg-[#1eb956] transition shadow-md flex items-center justify-center gap-1"
+            >
+              <span>💬</span> Order Now
+            </a>
+          )}
         </div>
       </div>
     </motion.article>

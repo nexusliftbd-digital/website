@@ -94,7 +94,7 @@ h1, h2, h3, h4, h5, h6, p, span, button, a, div {
 
 /* Animations */
 .animate-marquee {
-  animation: marquee 35s linear infinite;
+  animation: marquee 70s linear infinite;
 }
 
 .animate-marquee:hover {

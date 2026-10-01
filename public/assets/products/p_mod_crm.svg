@@ -1,1 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" rx="16" fill="#0B1733"/><rect x="20" y="20" width="360" height="260" rx="14" fill="#EAF6FF" opacity="0.08" stroke="#43A7E8"/><text x="200" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-weight="900" font-size="22" fill="#43A7E8">7-TAB CRM</text><text x="200" y="170" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#EAF6FF">Lead • Offer • Dispatch</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgCrmMod" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#071127"/>
+      <stop offset="100%" stop-color="#0B1733"/>
+    </linearGradient>
+    <linearGradient id="crmGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <filter id="shadowCrmMod" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <rect width="400" height="300" rx="16" fill="url(#bgCrmMod)"/>
+
+  <!-- Funnel & Messenger Mockup -->
+  <g filter="url(#shadowCrmMod)" transform="translate(30, 25)">
+    <rect x="0" y="0" width="340" height="230" rx="12" fill="#0F172A" stroke="#1E293B" stroke-width="1.5"/>
+
+    <!-- Header Banner -->
+    <rect x="0" y="0" width="340" height="42" rx="12" fill="url(#crmGrad2)"/>
+    <rect x="0" y="24" width="340" height="18" fill="url(#crmGrad2)"/>
+    <text x="20" y="26" font-family="Inter, sans-serif" font-weight="900" font-size="12" fill="#FFFFFF">CONVERSION &amp; MESSENGER SALES FLOW</text>
+
+    <!-- Chat Messages Preview -->
+    <rect x="18" y="56" width="150" height="156" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <text x="28" y="74" font-family="Inter, sans-serif" font-size="8" font-weight="800" fill="#94A3B8">INBOX CLOSING ENGINE</text>
+
+    <!-- Bubble 1 (Customer) -->
+    <rect x="28" y="86" width="105" height="24" rx="6" fill="#334155"/>
+    <text x="36" y="101" font-family="Inter, sans-serif" font-size="7" fill="#E2E8F0">দাম কত? ডেলিভারি চার্জ কত?</text>
+
+    <!-- Bubble 2 (Scripted Closer) -->
+    <rect x="45" y="116" width="115" height="34" rx="6" fill="#047857"/>
+    <text x="52" y="130" font-family="Inter, sans-serif" font-size="7" font-weight="700" fill="#FFFFFF">ভ্যালু ডেক + COD কনফার্মেশন</text>
+    <text x="52" y="142" font-family="Inter, sans-serif" font-size="6.5" fill="#D1FAE5">অফার + ফ্রি বোনাস ভল্ট অ্যাক্সেস</text>
+
+    <!-- Bubble 3 (Order Confirmed) -->
+    <rect x="28" y="156" width="115" height="22" rx="6" fill="#10B981"/>
+    <text x="36" y="170" font-family="Inter, sans-serif" font-size="7.5" font-weight="900" fill="#071127">✓ অর্ডার কনফার্মড (৳১,৪৯৯)</text>
+
+    <!-- Funnel Analytics Column -->
+    <rect x="178" y="56" width="144" height="156" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <text x="188" y="74" font-family="Inter, sans-serif" font-size="8" font-weight="800" fill="#38BDF8">LOST LEAD RECOVERY</text>
+
+    <!-- Metric Card 1 -->
+    <rect x="188" y="86" width="124" height="32" rx="4" fill="#0B132B"/>
+    <text x="196" y="99" font-family="Inter, sans-serif" font-size="7" fill="#94A3B8">Recovered Revenue</text>
+    <text x="196" y="112" font-family="Inter, sans-serif" font-size="10" font-weight="900" fill="#10B981">৳৬৪,৫০০ (৮২%)</text>
+
+    <!-- Metric Card 2 -->
+    <rect x="188" y="124" width="124" height="32" rx="4" fill="#0B132B"/>
+    <text x="196" y="137" font-family="Inter, sans-serif" font-size="7" fill="#94A3B8">Closing Rate Speed</text>
+    <text x="196" y="150" font-family="Inter, sans-serif" font-size="10" font-weight="900" fill="#38BDF8">4.2x Faster</text>
+
+    <!-- Badge -->
+    <rect x="188" y="166" width="124" height="24" rx="4" fill="#1971A5"/>
+    <text x="210" y="181" font-family="Inter, sans-serif" font-size="8" font-weight="900" fill="#FFFFFF">⚡ AUTO FOLLOW-UP</text>
+  </g>
+</svg>

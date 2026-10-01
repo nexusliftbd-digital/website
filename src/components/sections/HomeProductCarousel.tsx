@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { products } from '@/data/products';
@@ -8,8 +9,9 @@ import { products } from '@/data/products';
 export default function HomeProductCarousel() {
   // Top 3 Hit Products
   const highlightIds = ["corp-profile", "fcommerce-os", "founder-team-transition-os"];
-  const highlightedProducts = products.filter(p => highlightIds.includes(p.id));
-  const otherProducts = products.filter(p => !highlightIds.includes(p.id));
+  const visibleProducts = products.filter(p => p.status !== 'turned_off');
+  const highlightedProducts = visibleProducts.filter(p => highlightIds.includes(p.id));
+  const otherProducts = visibleProducts.filter(p => !highlightIds.includes(p.id));
 
   return (
     <section className="py-20 bg-[#0B1733] overflow-hidden">
@@ -48,23 +50,48 @@ export default function HomeProductCarousel() {
             <div className="p-6 flex-1 flex flex-col justify-between">
               <div>
                 <div className="flex justify-between items-center mb-3">
-                  <span className="bg-emerald-500/20 text-emerald-300 text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider border border-emerald-500/30">
+                  <span className="bg-[#0B1733] text-[#E0F2FE] text-[11px] font-black px-3 py-1 rounded-lg tracking-wider border border-white/20">
                     🔥 {p.badge}
                   </span>
-                  <span className="text-[#43A7E8] font-black text-2xl">{p.price}</span>
+                  <span className="text-[#43A7E8] font-black text-2xl tracking-tight">{p.price}</span>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 leading-snug">{p.title}</h3>
-                <p className="text-xs text-[#94A3B8] leading-relaxed mb-6">{p.desc}</p>
+                <h3 className="text-[19px] font-black text-white mb-2 leading-snug">{p.title}</h3>
+                <p className="text-[13px] text-[#94A3B8] font-medium leading-relaxed mb-6">{p.desc}</p>
               </div>
 
-              <a
-                href={`https://wa.me/8801814716713?text=${encodeURIComponent(`সালাম, আমি "${p.title}" (${p.price}) সম্পর্কে জানতে ও অর্ডার করতে চাই।`)}`}
-                target="_blank"
-                rel="noreferrer"
-                className="w-full inline-block text-center py-3 bg-[#43A7E8] text-[#0B1733] font-black text-xs rounded-xl hover:bg-white transition shadow-md"
-              >
-                Order Setup via WhatsApp →
-              </a>
+              {p.status === 'out_of_stock' ? (
+                <div className="space-y-2">
+                  <button
+                    disabled
+                    className="w-full inline-block text-center py-3 bg-gray-500 text-white cursor-not-allowed font-black text-xs rounded-xl"
+                  >
+                    🚫 Sold Out
+                  </button>
+                  <Link
+                    href={`/products/${p.id}`}
+                    className="w-full inline-block text-center py-2 bg-white/10 text-[#43A7E8] font-black text-xs rounded-xl hover:bg-white/20 transition"
+                  >
+                    Full Dedicated Page →
+                  </Link>
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  <a
+                    href={`https://wa.me/8801814716713?text=${encodeURIComponent(`সালাম, আমি "${p.title}" (${p.price}) সম্পর্কে জানতে ও অর্ডার করতে চাই।`)}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-full inline-block text-center py-3 bg-[#43A7E8] text-[#0B1733] font-black text-xs rounded-xl hover:bg-white transition shadow-md"
+                  >
+                    Order Setup via WhatsApp →
+                  </a>
+                  <Link
+                    href={`/products/${p.id}`}
+                    className="w-full inline-block text-center py-2 bg-white/10 text-[#43A7E8] font-black text-xs rounded-xl hover:bg-white/20 transition"
+                  >
+                    Full Dedicated Page →
+                  </Link>
+                </div>
+              )}
             </div>
           </motion.div>
         ))}
@@ -79,18 +106,18 @@ export default function HomeProductCarousel() {
               className="inline-flex flex-col w-[280px] bg-white/5 border border-white/10 rounded-2xl p-4 shrink-0 hover:bg-white/10 transition"
             >
               <div className="flex items-center justify-between mb-2">
-                <span className="text-[10px] font-bold text-gray-400 uppercase">{p.badge}</span>
-                <span className="text-[#43A7E8] font-black text-xs">{p.price}</span>
+                <span className="text-[11px] font-black text-[#E0F2FE] bg-[#0B1733] px-2 py-0.5 rounded tracking-wider border border-white/20 uppercase">{p.badge}</span>
+                <span className="text-[#43A7E8] font-black text-[13px] tracking-tight">{p.price}</span>
               </div>
-              <div className="font-extrabold text-white text-xs truncate whitespace-normal leading-tight mb-2 h-8">
+              <div className="font-black text-white text-[14px] truncate whitespace-normal leading-snug mb-2 h-9">
                 {p.title}
               </div>
-              <p className="text-[11px] text-[#94A3B8] line-clamp-2 mb-3 leading-snug whitespace-normal">
+              <p className="text-[12px] text-[#94A3B8] font-medium line-clamp-2 mb-3 leading-snug whitespace-normal">
                 {p.desc}
               </p>
               <a
                 href="#products"
-                className="text-[11px] font-bold text-center text-white bg-white/10 py-1.5 rounded-lg hover:bg-white/20 transition mt-auto"
+                className="text-[12px] font-bold text-center text-[#E0F2FE] bg-white/10 py-2 rounded-xl hover:bg-white/20 transition mt-auto"
               >
                 Details & Order
               </a>

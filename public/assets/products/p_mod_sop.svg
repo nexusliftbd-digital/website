@@ -1,1 +1,58 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" rx="16" fill="#0B1733"/><rect x="20" y="20" width="360" height="260" rx="14" fill="#EAF6FF" opacity="0.08" stroke="#1971A5"/><text x="200" y="145" text-anchor="middle" font-family="Inter, sans-serif" font-weight="900" font-size="22" fill="#1971A5">RISK SOP</text><text x="200" y="175" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#EAF6FF">Packing • Courier Verify</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgSop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#071127"/>
+      <stop offset="100%" stop-color="#0B1733"/>
+    </linearGradient>
+    <linearGradient id="sopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <filter id="shadowSop" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <rect width="400" height="300" rx="16" fill="url(#bgSop)"/>
+
+  <g filter="url(#shadowSop)" transform="translate(30, 25)">
+    <rect x="0" y="0" width="340" height="230" rx="12" fill="#0F172A" stroke="#1E293B" stroke-width="1.5"/>
+
+    <!-- Header -->
+    <rect x="0" y="0" width="340" height="42" rx="12" fill="url(#sopGrad)"/>
+    <rect x="0" y="24" width="340" height="18" fill="url(#sopGrad)"/>
+    <text x="20" y="26" font-family="Inter, sans-serif" font-weight="900" font-size="12" fill="#FFFFFF">OPERATIONS &amp; DELEGATION SOP VAULT</text>
+
+    <!-- Flowchart Steps -->
+    <rect x="18" y="56" width="304" height="44" rx="8" fill="#1E293B"/>
+    <circle cx="40" cy="78" r="14" fill="#0B132B" stroke="#F59E0B" stroke-width="2"/>
+    <text x="36" y="83" font-family="Inter, sans-serif" font-size="11" font-weight="900" fill="#F59E0B">1</text>
+    <text x="64" y="74" font-family="Inter, sans-serif" font-size="8" font-weight="800" fill="#FFFFFF">Lead Received</text>
+    <text x="64" y="86" font-family="Inter, sans-serif" font-size="7" fill="#94A3B8">Instant Webhook Trigger</text>
+
+    <line x1="140" y1="78" x2="165" y2="78" stroke="#F59E0B" stroke-width="2" stroke-dasharray="2 2"/>
+
+    <circle cx="180" cy="78" r="14" fill="#0B132B" stroke="#38BDF8" stroke-width="2"/>
+    <text x="176" y="83" font-family="Inter, sans-serif" font-size="11" font-weight="900" fill="#38BDF8">2</text>
+    <text x="202" y="74" font-family="Inter, sans-serif" font-size="8" font-weight="800" fill="#FFFFFF">SOP Delegation</text>
+    <text x="202" y="86" font-family="Inter, sans-serif" font-size="7" fill="#94A3B8">Auto-assigned Agent</text>
+
+    <line x1="265" y1="78" x2="285" y2="78" stroke="#38BDF8" stroke-width="2" stroke-dasharray="2 2"/>
+
+    <!-- SOP Checklists -->
+    <rect x="18" y="110" width="146" height="104" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <text x="28" y="128" font-family="Inter, sans-serif" font-size="8" font-weight="900" fill="#F59E0B">COURIER DISPATCH SOP</text>
+    <text x="28" y="148" font-family="Inter, sans-serif" font-size="7.5" fill="#E2E8F0">✓ 2-Step Phone Verification</text>
+    <text x="28" y="166" font-family="Inter, sans-serif" font-size="7.5" fill="#E2E8F0">✓ Return Risk Scoring API</text>
+    <text x="28" y="184" font-family="Inter, sans-serif" font-size="7.5" fill="#E2E8F0">✓ Auto Tracking SMS Trigger</text>
+    <text x="28" y="202" font-family="Inter, sans-serif" font-size="7.5" fill="#10B981 font-weight:900">Return Rate: &lt; 4%</text>
+
+    <rect x="176" y="110" width="146" height="104" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <text x="186" y="128" font-family="Inter, sans-serif" font-size="8" font-weight="900" fill="#38BDF8">BUSINESS HEALTH METRICS</text>
+    <rect x="186" y="138" width="126" height="24" rx="4" fill="#0B132B"/>
+    <text x="194" y="153" font-family="Inter, sans-serif" font-size="7.5" fill="#94A3B8">Founder Time Saved: <tspan font-weight="900" fill="#38BDF8">18h/week</tspan></text>
+    <rect x="186" y="168" width="126" height="34" rx="4" fill="#0B132B"/>
+    <text x="194" y="182" font-family="Inter, sans-serif" font-size="7.5" fill="#94A3B8">Process Dependency: <tspan font-weight="900" fill="#10B981">Zero</tspan></text>
+    <text x="194" y="194" font-family="Inter, sans-serif" font-size="6.5" fill="#10B981">100% Runs on System Guidelines</text>
+  </g>
+</svg>

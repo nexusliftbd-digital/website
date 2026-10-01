@@ -1,6 +1,9 @@
 import React from "react";
 import CourierReturnLossCalculator from "@/components/calculators/CourierReturnLossCalculator";
 import PricingProfitCalculator from "@/components/calculators/PricingProfitCalculator";
+import KpiTrackingCalculator from "@/components/calculators/KpiTrackingCalculator";
+import SkuCostingCalculator from "@/components/calculators/SkuCostingCalculator";
+import HtmlPdfWebEditor from "@/components/calculators/HtmlPdfWebEditor";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 
@@ -35,11 +38,20 @@ export default function FreeToolsPage() {
         {/* Content */}
         <div className="max-w-[1160px] mx-auto px-4 md:px-0 mt-[-40px] relative z-20 space-y-8">
 
-          {/* Tool 1 */}
+          {/* Tool 1: Pricing & Profit Margin */}
           <PricingProfitCalculator />
 
-          {/* Tool 2 */}
+          {/* Tool 2: Courier Return Loss Estimator */}
           <CourierReturnLossCalculator />
+
+          {/* Tool 3: SKU & Raw Material Costing */}
+          <SkuCostingCalculator />
+
+          {/* Tool 4: KPI & Team Performance Tracking */}
+          <KpiTrackingCalculator />
+
+          {/* Tool 5: HTML to PDF & Live Web Document Generator */}
+          <HtmlPdfWebEditor />
 
           {/* Lead Magnet CTA for more templates */}
           <div className="bg-gradient-to-br from-[#1971A5] to-[#125883] p-8 rounded-2xl text-white mt-12 flex flex-col items-center text-center">
