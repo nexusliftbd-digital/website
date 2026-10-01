@@ -86,7 +86,7 @@ export default async function ProductDetailPage({ params }: Props) {
                 "@type": "Product",
                 "name": product.title,
                 "description": product.desc,
-                "image": `https://nexuslift.xyz${product.img}`,
+                "image": `https://nexuslift.info${product.img}`,
                 "offers": {
                   "@type": "Offer",
                   "price": product.price.replace(/[^0-9]/g, '') || "1000",
@@ -94,7 +94,7 @@ export default async function ProductDetailPage({ params }: Props) {
                   "availability": product.status === 'out_of_stock'
                     ? "https://schema.org/OutOfStock"
                     : "https://schema.org/InStock",
-                  "url": `https://nexuslift.xyz/products/${product.id}`,
+                  "url": `https://nexuslift.info/products/${product.id}`,
                   "seller": {
                     "@type": "Organization",
                     "name": "Nexus Lift"
@@ -108,19 +108,19 @@ export default async function ProductDetailPage({ params }: Props) {
                     "@type": "ListItem",
                     "position": 1,
                     "name": "Home",
-                    "item": "https://nexuslift.xyz/preview"
+                    "item": "https://nexuslift.info/preview"
                   },
                   {
                     "@type": "ListItem",
                     "position": 2,
                     "name": "Products",
-                    "item": "https://nexuslift.xyz/preview#products"
+                    "item": "https://nexuslift.info/preview#products"
                   },
                   {
                     "@type": "ListItem",
                     "position": 3,
                     "name": product.title,
-                    "item": `https://nexuslift.xyz/products/${product.id}`
+                    "item": `https://nexuslift.info/products/${product.id}`
                   }
                 ]
               }

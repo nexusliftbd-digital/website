@@ -36,10 +36,10 @@ export default function Home() {
             "@graph": [
               {
                 "@type": "Organization",
-                "@id": "https://nexuslift.xyz/#organization",
+                "@id": "https://nexuslift.info/#organization",
                 "name": "Nexus Lift",
-                "url": "https://nexuslift.xyz",
-                "logo": "https://nexuslift.xyz/logo.png",
+                "url": "https://nexuslift.info",
+                "logo": "https://nexuslift.info/assets/brand/nexus-lift-og-card.png",
                 "description": "Connecting Sources, Lifting Business — AI-Powered Business Infrastructure, Operating Systems & Automation Platform for SMEs & Startups in Bangladesh.",
                 "address": {
                   "@type": "PostalAddress",
@@ -55,16 +55,16 @@ export default function Home() {
               },
               {
                 "@type": "WebSite",
-                "@id": "https://nexuslift.xyz/#website",
-                "url": "https://nexuslift.xyz",
+                "@id": "https://nexuslift.info/#website",
+                "url": "https://nexuslift.info",
                 "name": "Nexus Lift — Business Growth Infrastructure",
                 "publisher": {
-                  "@id": "https://nexuslift.xyz/#organization"
+                  "@id": "https://nexuslift.info/#organization"
                 }
               },
               {
                 "@type": "FAQPage",
-                "@id": "https://nexuslift.xyz/#faq",
+                "@id": "https://nexuslift.info/#faq",
                 "mainEntity": [
                   {
                     "@type": "Question",
