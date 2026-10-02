@@ -18,6 +18,7 @@ import VisionGallery from '@/components/sections/VisionGallery';
 import InsightsSection from '@/components/sections/InsightsSection';
 import AiRouterChat from '@/components/sections/AiRouterChat';
 import GrowthArchitectureSection from '@/components/sections/GrowthArchitectureSection';
+import HeroProducts from '@/components/sections/HeroProducts';
 
 export const metadata = {
   title: 'Nexus Lift | Business Infrastructure & Growth Systems in Bangladesh',
@@ -162,6 +163,11 @@ export default function Home() {
             <HeroSystemHealthCard />
           </div>
         </header>
+
+        {/* ══════════════════════════════════════════
+            1.5 THREE CORE HERO PRODUCTS
+        ══════════════════════════════════════════ */}
+        <HeroProducts />
 
         {/* ══════════════════════════════════════════
             2. PROBLEM RECOGNITION (Pain First)
